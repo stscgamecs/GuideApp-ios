@@ -67,7 +67,13 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sort"/>
+                                <connections>
+                                    <action selector="btnSort:" destination="mHM-gd-Loc" eventType="touchUpInside" id="yrj-8X-94T"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <action selector="btnSort:" destination="mHM-gd-Loc" id="EOC-f4-qUn"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

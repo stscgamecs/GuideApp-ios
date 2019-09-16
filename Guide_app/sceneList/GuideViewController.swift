@@ -17,12 +17,17 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
   var router: GuideRouter!
 
     @IBOutlet weak var segMentControl: UISegmentedControl!
+   
     @IBAction func segMentController(_ sender: Any) {
+        
         switch  segMentControl.selectedSegmentIndex {
         case 0:
+           
             print("one")
         case 1:
+           
             print("Two")
+           
         default:
             break
         }
@@ -31,6 +36,17 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
  
     @IBOutlet weak var tableViewControl: UITableView!
     
+    @IBAction func btnSort(_ sender: Any) {
+     
+        let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:nil))
+        alert.addAction(UIAlertAction(title: "Price low to low", style: .default, handler:nil))
+        alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true)
+        
+    }
     
     
   // MARK: - Object lifecycle
@@ -105,6 +121,7 @@ extension GuideViewController:UITableViewDelegate{
 }
 extension GuideViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 10
     }
     
