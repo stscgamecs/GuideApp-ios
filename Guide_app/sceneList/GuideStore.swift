@@ -19,10 +19,10 @@ import Foundation
  */
 
 class GuideStore: GuideStoreProtocol {
-  func getData(_ completion: @escaping (Result<Entity>) -> Void) {
+  func getData(_ completion: @escaping (Result<phone>) -> Void) {
     // Simulates an asynchronous background thread that calls back on the main thread after 2 seconds
     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      completion(Result.success(Entity()))
+     // completion(Result.success(phone()))
     }
   }
 }

@@ -1,5 +1,5 @@
 //
-//  GuideInteractor.swift
+//  sceneDetailInteractor.swift
 //  Guide_app
 //
 //  Created by Z64me on 16/9/2562 BE.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol GuideInteractorInterface {
-  func doSomething(request: Guide.Something.Request)
-  var model: Entity? { get }
+protocol sceneDetailInteractorInterface {
+  func doSomething(request: sceneDetail.Something.Request)
+  var model: phone? { get }
 }
 
-class GuideInteractor: GuideInteractorInterface {
-  var presenter: GuidePresenterInterface!
-  var worker: GuideWorker?
-  var model: Entity?
+class sceneDetailInteractor: sceneDetailInteractorInterface {
+  var presenter: sceneDetailPresenterInterface!
+  var worker: sceneDetailWorker?
+  var model: phone?
 
   // MARK: - Business logic
 
-  func doSomething(request: Guide.Something.Request) {
+  func doSomething(request: sceneDetail.Something.Request) {
     worker?.doSomeWork { [weak self] in
       if case let Result.success(data) = $0 {
         // If the result was successful, we keep the data so that we can deliver it to another view controller through the router.
@@ -28,7 +28,7 @@ class GuideInteractor: GuideInteractorInterface {
       }
 
       // NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
-      let response = Guide.Something.Response()
+      let response = sceneDetail.Something.Response()
       self?.presenter.presentSomething(response: response)
     }
   }

@@ -1,5 +1,5 @@
 //
-//  GuideRouter.swift
+//  sceneDetailRouter.swift
 //  Guide_app
 //
 //  Created by Z64me on 16/9/2562 BE.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol GuideRouterInput {
+protocol sceneDetailRouterInput {
   func navigateToSomewhere()
 }
 
-class GuideRouter: GuideRouterInput {
-  weak var viewController: GuideViewController!
+class sceneDetailRouter: sceneDetailRouterInput {
+  weak var viewController: sceneDetailViewController!
 
   // MARK: - Navigation
 

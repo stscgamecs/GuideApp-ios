@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GuideStoreProtocol {
-  func getData(_ completion: @escaping (Result<Entity>) -> Void)
+  func getData(_ completion: @escaping (Result<phone>) -> Void)
 }
 
 class GuideWorker {
@@ -22,7 +22,7 @@ class GuideWorker {
 
   // MARK: - Business Logic
 
-  func doSomeWork(_ completion: @escaping (Result<Entity>) -> Void) {
+  func doSomeWork(_ completion: @escaping (Result<phone>) -> Void) {
     // NOTE: Do the work
     store.getData {
       // The worker may perform some small business logic before returning the result to the Interactor

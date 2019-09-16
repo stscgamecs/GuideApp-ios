@@ -16,6 +16,23 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
   var interactor: GuideInteractorInterface!
   var router: GuideRouter!
 
+    @IBOutlet weak var segMentControl: UISegmentedControl!
+    @IBAction func segMentController(_ sender: Any) {
+        switch  segMentControl.selectedSegmentIndex {
+        case 0:
+            print("one")
+        case 1:
+            print("Two")
+        default:
+            break
+        }
+    }
+    
+ 
+    @IBOutlet weak var tableViewControl: UITableView!
+    
+    
+    
   // MARK: - Object lifecycle
 
   override func awakeFromNib() {
@@ -41,14 +58,18 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
   }
 
   // MARK: - View lifecycle
-
+    
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let bundle = Bundle(for: SegmentTableViewCell.self)
+    let nib = UINib(nibName: "SegmentTableViewCell", bundle: bundle)
+    tableViewControl.register(nib, forCellReuseIdentifier: "tableViewPhoneCell")
     doSomethingOnLoad()
+    
   }
 
   // MARK: - Event handling
-
   func doSomethingOnLoad() {
     // NOTE: Ask the Interactor to do some work
 
@@ -74,4 +95,25 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
     print("unwind...")
     router.passDataToNextScene(segue: segue)
   }
+}
+
+extension GuideViewController:UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
+    }
+}
+extension GuideViewController:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableViewControl.dequeueReusableCell(withIdentifier: "tableViewPhoneCell") as? SegmentTableViewCell else { return UITableViewCell() }
+        return cell
+    }
+    
+    
+    
 }

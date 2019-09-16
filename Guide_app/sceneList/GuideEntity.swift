@@ -29,4 +29,13 @@ enum Result<T> {
 //
 // The entity or business object
 //
-struct Entity {}
+struct phone {
+    
+    let thumbImageURL:URL
+    let brand:String
+    let name:String
+    let description:String
+    let id:Int
+    
+
+}
