@@ -14,6 +14,14 @@
 		441F96A2232F8E6600B87C56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441F96A0232F8E6600B87C56 /* LaunchScreen.storyboard */; };
 		441F96AD232F8E6600B87C56 /* Guide_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96AC232F8E6600B87C56 /* Guide_appTests.swift */; };
 		441F96B8232F8E6600B87C56 /* Guide_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96B7232F8E6600B87C56 /* Guide_appUITests.swift */; };
+		441F96CE232F8E9A00B87C56 /* GuideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C6232F8E9A00B87C56 /* GuideStore.swift */; };
+		441F96CF232F8E9A00B87C56 /* GuidePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C7232F8E9A00B87C56 /* GuidePresenter.swift */; };
+		441F96D0232F8E9A00B87C56 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C8232F8E9A00B87C56 /* GuideWorker.swift */; };
+		441F96D1232F8E9A00B87C56 /* GuideRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C9232F8E9A00B87C56 /* GuideRouter.swift */; };
+		441F96D2232F8E9A00B87C56 /* GuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CA232F8E9A00B87C56 /* GuideModels.swift */; };
+		441F96D3232F8E9A00B87C56 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CB232F8E9A00B87C56 /* GuideViewController.swift */; };
+		441F96D4232F8E9A00B87C56 /* GuideInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CC232F8E9A00B87C56 /* GuideInteractor.swift */; };
+		441F96D5232F8E9A00B87C56 /* GuideEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CD232F8E9A00B87C56 /* GuideEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +55,14 @@
 		441F96B3232F8E6600B87C56 /* Guide_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Guide_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		441F96B7232F8E6600B87C56 /* Guide_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide_appUITests.swift; sourceTree = "<group>"; };
 		441F96B9232F8E6600B87C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		441F96C6232F8E9A00B87C56 /* GuideStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideStore.swift; sourceTree = "<group>"; };
+		441F96C7232F8E9A00B87C56 /* GuidePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePresenter.swift; sourceTree = "<group>"; };
+		441F96C8232F8E9A00B87C56 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
+		441F96C9232F8E9A00B87C56 /* GuideRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRouter.swift; sourceTree = "<group>"; };
+		441F96CA232F8E9A00B87C56 /* GuideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModels.swift; sourceTree = "<group>"; };
+		441F96CB232F8E9A00B87C56 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		441F96CC232F8E9A00B87C56 /* GuideInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideInteractor.swift; sourceTree = "<group>"; };
+		441F96CD232F8E9A00B87C56 /* GuideEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +113,7 @@
 		441F9696232F8E6600B87C56 /* Guide_app */ = {
 			isa = PBXGroup;
 			children = (
+				441F96C5232F8E7500B87C56 /* scene */,
 				441F9697232F8E6600B87C56 /* AppDelegate.swift */,
 				441F9699232F8E6600B87C56 /* ViewController.swift */,
 				441F969B232F8E6600B87C56 /* Main.storyboard */,
@@ -123,6 +140,21 @@
 				441F96B9232F8E6600B87C56 /* Info.plist */,
 			);
 			path = Guide_appUITests;
+			sourceTree = "<group>";
+		};
+		441F96C5232F8E7500B87C56 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				441F96C6232F8E9A00B87C56 /* GuideStore.swift */,
+				441F96C7232F8E9A00B87C56 /* GuidePresenter.swift */,
+				441F96C8232F8E9A00B87C56 /* GuideWorker.swift */,
+				441F96C9232F8E9A00B87C56 /* GuideRouter.swift */,
+				441F96CA232F8E9A00B87C56 /* GuideModels.swift */,
+				441F96CB232F8E9A00B87C56 /* GuideViewController.swift */,
+				441F96CC232F8E9A00B87C56 /* GuideInteractor.swift */,
+				441F96CD232F8E9A00B87C56 /* GuideEntity.swift */,
+			);
+			path = scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +288,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441F96D4232F8E9A00B87C56 /* GuideInteractor.swift in Sources */,
+				441F96D2232F8E9A00B87C56 /* GuideModels.swift in Sources */,
+				441F96D3232F8E9A00B87C56 /* GuideViewController.swift in Sources */,
 				441F969A232F8E6600B87C56 /* ViewController.swift in Sources */,
+				441F96CF232F8E9A00B87C56 /* GuidePresenter.swift in Sources */,
+				441F96D5232F8E9A00B87C56 /* GuideEntity.swift in Sources */,
 				441F9698232F8E6600B87C56 /* AppDelegate.swift in Sources */,
+				441F96D1232F8E9A00B87C56 /* GuideRouter.swift in Sources */,
+				441F96CE232F8E9A00B87C56 /* GuideStore.swift in Sources */,
+				441F96D0232F8E9A00B87C56 /* GuideWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
