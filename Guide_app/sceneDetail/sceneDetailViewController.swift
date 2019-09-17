@@ -13,7 +13,7 @@ protocol sceneDetailViewControllerInterface: class {
 }
 
 class sceneDetailViewController: UIViewController, sceneDetailViewControllerInterface {
-  var interactor: sceneDetailInteractorInterface!
+ // var interactor: sceneDetailInteractorInterface!
   var router: sceneDetailRouter!
 
   // MARK: - Object lifecycle
@@ -26,18 +26,18 @@ class sceneDetailViewController: UIViewController, sceneDetailViewControllerInte
   // MARK: - Configuration
 
   private func configure(viewController: sceneDetailViewController) {
-    let router = sceneDetailRouter()
-    router.viewController = viewController
+ //   let router = sceneDetailRouter()
+//    router.viewController = viewController
+//
+//    let presenter = sceneDetailPresenter()
+//    presenter.viewController = viewController
+//
+//    let interactor = sceneDetailInteractor()
+//    interactor.presenter = presenter
+//    interactor.worker = sceneDetailWorker(store: sceneDetailStore())
 
-    let presenter = sceneDetailPresenter()
-    presenter.viewController = viewController
-
-    let interactor = sceneDetailInteractor()
-    interactor.presenter = presenter
-    interactor.worker = sceneDetailWorker(store: sceneDetailStore())
-
-    viewController.interactor = interactor
-    viewController.router = router
+   // viewController.interactor = interactor
+   // viewController.router = router
   }
 
   // MARK: - View lifecycle
@@ -52,8 +52,8 @@ class sceneDetailViewController: UIViewController, sceneDetailViewControllerInte
   func doSomethingOnLoad() {
     // NOTE: Ask the Interactor to do some work
 
-    let request = sceneDetail.Something.Request()
-    interactor.doSomething(request: request)
+ //   let request = sceneDetail.Something.Request()
+ //   interactor.doSomething(request: request)
   }
 
   // MARK: - Display logic

@@ -13,7 +13,7 @@ protocol sceneDetailRouterInput {
 }
 
 class sceneDetailRouter: sceneDetailRouterInput {
-  weak var viewController: sceneDetailViewController!
+//  weak var viewController: sceneDetailViewController!
 
   // MARK: - Navigation
 

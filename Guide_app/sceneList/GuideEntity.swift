@@ -1,41 +1,24 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
 //
-//  GuideEntity.swift
-//  Guide_app
-//
-//  Created by Z64me on 16/9/2562 BE.
-//  Copyright (c) 2562 Z64me. All rights reserved.
-//
+//   let phone = try? newJSONDecoder().decode(Phone.self, from: jsonData)
 
 import Foundation
 
-/*
-
- The Entity class is the business object.
- The Result enumeration is the domain model.
-
- 1. Rename this file to the desired name of the model.
- 2. Rename the Entity class with the desired name of the model.
- 3. Move this file to the Models folder.
- 4. If the project already has a declaration of Result enumeration, you may remove the declaration from this file.
- 5. Remove the following comments from this file.
-
- */
-
-enum Result<T> {
-  case success(T)
-  case failure(Error)
+// MARK: - PhoneElement
+struct phone: Codable {
+    let thumbImageURL: String
+    let brand: String
+    let rating: Double
+    let name, phoneDescription: String
+    let id: Int
+    let price: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case thumbImageURL, brand, rating, name
+        case phoneDescription = "description"
+        case id, price
+    }
 }
 
-//
-// The entity or business object
-//
-struct phone {
-    
-    let thumbImageURL:URL
-    let brand:String
-    let name:String
-    let description:String
-    let id:Int
-    
-
-}
+typealias Phone = [phone]

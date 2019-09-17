@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Guide View Controller-->
+        <!--Item-->
         <scene sceneID="XDP-mV-ROv">
             <objects>
                 <viewController id="mHM-gd-Loc" customClass="GuideViewController" customModule="Guide_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,19 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Fqy-Jz-n7z">
+                            <segmentedControl opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fqy-Jz-n7z">
                                 <rect key="frame" x="0.0" y="88" width="414" height="29"/>
                                 <segments>
                                     <segment title="All"/>
                                     <segment title="Favorite"/>
                                 </segments>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="segMentController:" destination="mHM-gd-Loc" eventType="valueChanged" id="6AN-vi-p3u"/>
+                                    <action selector="segMentController:" destination="mHM-gd-Loc" eventType="valueChanged" id="50o-2y-uvL"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yQI-Tx-XhD">
-                                <rect key="frame" x="0.0" y="124" width="414" height="751"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="702"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="79" id="iVo-Zi-o0r">
@@ -61,6 +60,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lxb-Em-pId"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="KXs-Wu-HY2"/>
                     <navigationItem key="navigationItem" id="1jG-k2-eyX">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="d6X-NS-7kW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gpw-5c-vkp">
@@ -76,8 +76,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="segMentControl" destination="Fqy-Jz-n7z" id="JVt-0e-0f9"/>
+                        <outlet property="segMentControl" destination="Fqy-Jz-n7z" id="1p6-K9-sSH"/>
                         <outlet property="tableViewControl" destination="yQI-Tx-XhD" id="HV7-m5-mer"/>
                         <segue destination="t1V-PD-fyW" kind="show" identifier="ShowSomewhereScene" id="cBZ-53-fos"/>
                     </connections>
@@ -101,11 +102,13 @@
             </objects>
             <point key="canvasLocation" x="1678" y="33"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="7NZ-nM-TKe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MSz-vj-WCG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4pa-ay-8HW"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z1U-rA-CXW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
