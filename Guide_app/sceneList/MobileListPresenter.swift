@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol GuidePresenterInterface {
+protocol MobileListPresenterInterface {
   func presentSomething(response: Guide.Something.Response)
 }
 
-class GuidePresenter: GuidePresenterInterface {
-  weak var viewController: GuideViewControllerInterface!
+class MobileListPresenter: MobileListPresenterInterface {
+  weak var viewController: MobileListViewControllerInterface!
 
   // MARK: - Presentation logic
 

@@ -1,5 +1,5 @@
 //
-//  sceneDetailRouter.swift
+//  GuideRouter.swift
 //  Guide_app
 //
 //  Created by Z64me on 16/9/2562 BE.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol sceneDetailRouterInput {
+protocol MobileListRouterInput {
   func navigateToSomewhere()
 }
 
-class sceneDetailRouter: sceneDetailRouterInput {
-//  weak var viewController: sceneDetailViewController!
+class MobileListRouter: MobileListRouterInput {
+  weak var viewController: MobileListViewController!
 
   // MARK: - Navigation
 
@@ -47,7 +47,7 @@ class sceneDetailRouter: sceneDetailRouterInput {
 
   func passDataToSomewhereScene(segue: UIStoryboardSegue) {
     // NOTE: Teach the router how to pass data to the next scene
-
+    
     // let someWhereViewController = segue.destinationViewController as! SomeWhereViewController
     // someWhereViewController.interactor.model = viewController.interactor.model
   }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct sceneDetail {
+struct MobileListDetail {
   /// This structure represents a use case
   struct Something {
     /// Data struct sent to Interactor

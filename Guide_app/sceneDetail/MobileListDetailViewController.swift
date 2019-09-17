@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol sceneDetailViewControllerInterface: class {
-  func displaySomething(viewModel: sceneDetail.Something.ViewModel)
+protocol MobileListDetailViewControllerInterface: class {
+  func displaySomething(viewModel: MobileListDetail.Something.ViewModel)
 }
 
-class sceneDetailViewController: UIViewController, sceneDetailViewControllerInterface {
+class MobileListDetailViewController: UIViewController, MobileListDetailViewControllerInterface {
  // var interactor: sceneDetailInteractorInterface!
-  var router: sceneDetailRouter!
+  var router: MobileListDetailRouter!
 
   // MARK: - Object lifecycle
 
@@ -25,7 +25,7 @@ class sceneDetailViewController: UIViewController, sceneDetailViewControllerInte
 
   // MARK: - Configuration
 
-  private func configure(viewController: sceneDetailViewController) {
+  private func configure(viewController: MobileListDetailViewController) {
  //   let router = sceneDetailRouter()
 //    router.viewController = viewController
 //
@@ -58,7 +58,7 @@ class sceneDetailViewController: UIViewController, sceneDetailViewControllerInte
 
   // MARK: - Display logic
 
-  func displaySomething(viewModel: sceneDetail.Something.ViewModel) {
+  func displaySomething(viewModel: MobileListDetail.Something.ViewModel) {
     // NOTE: Display the result from the Presenter
 
     // nameTextField.text = viewModel.name

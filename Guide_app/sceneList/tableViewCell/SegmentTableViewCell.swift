@@ -39,6 +39,8 @@ class SegmentTableViewCell: UITableViewCell {
         imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL))
         textBrand.text = classPhone.brand
         subText.text = classPhone.phoneDescription
+        price.text = "\(classPhone.price)"
+        rating.text = "\(classPhone.rating)"
         
     }
 }

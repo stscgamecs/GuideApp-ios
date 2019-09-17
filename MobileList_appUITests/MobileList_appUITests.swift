@@ -8,7 +8,7 @@
 
 import XCTest
 
-class Guide_appUITests: XCTestCase {
+class MobileList_appUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

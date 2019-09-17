@@ -1,5 +1,5 @@
 ////
-////  sceneDetailStore.swift
+////  GuideStore.swift
 ////  Guide_app
 ////
 ////  Created by Z64me on 16/9/2562 BE.
@@ -10,7 +10,7 @@
 //
 ///*
 //
-// The sceneDetailStore class implements the sceneDetailStoreProtocol.
+// The GuideStore class implements the GuideStoreProtocol.
 //
 // The source for the data could be a database, cache, or a web service.
 //
@@ -18,11 +18,11 @@
 //
 // */
 //
-//class sceneDetailStore: sceneDetailStoreProtocol {
+//class MobileListStore: MobileListStoreProtocol {
 //  func getData(_ completion: @escaping (Result<phone>) -> Void) {
 //    // Simulates an asynchronous background thread that calls back on the main thread after 2 seconds
 //    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//      //completion(Result.success(Entity()))
+//     // completion(Result.success(phone()))
 //    }
 //  }
 //}

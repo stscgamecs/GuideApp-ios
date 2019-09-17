@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol GuideViewControllerInterface: class {
+protocol MobileListViewControllerInterface: class {
   func displaySomething(viewModel: Guide.Something.ViewModel)
 }
 
-class GuideViewController: UIViewController, GuideViewControllerInterface {
+class MobileListViewController: UIViewController, MobileListViewControllerInterface {
   //var interactor: GuideInteractorInterface!
-  var router: GuideRouter!
+  var router: MobileListRouter!
 
     @IBOutlet weak var segMentControl: UISegmentedControl!
     //var number:Int = 2
@@ -132,7 +132,7 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowSomewhereScene",
-        let _ = segue.destination as? sceneDetailViewController{
+        let _ = segue.destination as? MobileListDetailViewController{
         
     }
     //router.passDataToNextScene(segue: segue)
@@ -144,13 +144,13 @@ class GuideViewController: UIViewController, GuideViewControllerInterface {
   }
 }
 
-extension GuideViewController:UITableViewDelegate{
+extension MobileListViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
     }
 }
-extension GuideViewController:UITableViewDataSource{
+extension MobileListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 print(arrApiPhone.count)
         return arrApiPhone.count
