@@ -10,6 +10,7 @@ import UIKit
 
 protocol MobileListStoreProtocol {
   //func getData(_ completion: @escaping (Result<phone>) -> Void)
+    func getPhone(_ completion: @escaping (Result<Phone,ApiError>) -> Void)
 }
 
 class MobileListWorker {
@@ -22,11 +23,9 @@ class MobileListWorker {
 
   // MARK: - Business Logic
 
-//  func doSomeWork(_ completion: @escaping (Result<phone>) -> Void) {
-//    // NOTE: Do the work
-//    store.getData {
-//      // The worker may perform some small business logic before returning the result to the Interactor
-//      completion($0)
-//    }
-//  }
+    func getPhone(_ completion: @escaping (Result<Phone,ApiError>) -> Void) {
+        store.getPhone{
+          completion($0)
+      }
+    }
 }

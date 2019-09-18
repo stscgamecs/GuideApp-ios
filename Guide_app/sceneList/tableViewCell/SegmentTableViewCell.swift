@@ -22,25 +22,25 @@ class SegmentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageFavorite: UIButton!
     //let imageCheck = UIImage(named: "star")
-    var imageCheck = 0
+    var imageCheck = false
     @IBAction func favorite(_ sender: Any) {
         
-        if  imageCheck == 0 {
+        if  imageCheck == false {
         imageFavorite.setImage(UIImage(named: "starSuccess"), for: UIControl.State.normal)
-            imageCheck = 1
-        }else if imageCheck == 1{
+            imageCheck = true
+        }else if imageCheck == true{
             imageFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
-            imageCheck = 0
+            imageCheck = false
         }
         
     }
     
-    func setUi(classPhone: phone){
-        imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL))
-        textBrand.text = classPhone.brand
+    func setUi(classPhone: Mobile){
+        imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
+        textBrand.text = classPhone.name
         subText.text = classPhone.phoneDescription
-        price.text = "\(classPhone.price)"
-        rating.text = "\(classPhone.rating)"
+      price.text = "\(classPhone.price ?? 0)"
+      rating.text = "\(classPhone.rating ?? 0)"
         
     }
 }

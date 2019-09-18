@@ -9,34 +9,21 @@
 import UIKit
 
 protocol MobileListViewControllerInterface: class {
-  func displaySomething(viewModel: Guide.Something.ViewModel)
+  func mobileDisplay(viewModel: MobileList.Something.ViewModel)
+    
 }
 
-class MobileListViewController: UIViewController, MobileListViewControllerInterface {
-  //var interactor: GuideInteractorInterface!
-  var router: MobileListRouter!
+class MobileListViewController: UIViewController,MobileListViewControllerInterface {
+
+    var interactor: MobileListInteractorInterface!
+    var router: MobileListRouter!
+    var modelPhone: Phone = []
 
     @IBOutlet weak var segMentControl: UISegmentedControl!
-    //var number:Int = 2
-    @IBAction func segMentController(_ sender: Any) {
-        
-        switch  segMentControl.selectedSegmentIndex {
-        case 0:
-            //number = 2
-            print("one")
-            tableViewControl.reloadData()
-        case 1:
-          // number = 4
-            print("Two")
-           tableViewControl.reloadData()
-        default:
-            break
-        }
-    }
-    
+
+  
  
     @IBOutlet weak var tableViewControl: UITableView!
-    
     @IBAction func btnSort(_ sender: Any) {
      
         let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
@@ -44,88 +31,63 @@ class MobileListViewController: UIViewController, MobileListViewControllerInterf
         alert.addAction(UIAlertAction(title: "Price low to low", style: .default, handler:nil))
         alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:nil))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
         self.present(alert, animated: true)
         
     }
     
     
   // MARK: - Object lifecycle
-
   override func awakeFromNib() {
     super.awakeFromNib()
-   // configure(viewController: self)
+   configure(viewController: self)
   }
 
   // MARK: - Configuration
+  private func configure(viewController: MobileListViewController) {
+    let router = MobileListRouter()
+    router.viewController = viewController
 
-//  private func configure(viewController: GuideViewController) {
-//    let router = GuideRouter()
-//    router.viewController = viewController
-//
-//    let presenter = GuidePresenter()
-//    presenter.viewController = viewController
-//
-//    let interactor = GuideInteractor()
-//    interactor.presenter = presenter
-//    interactor.worker = GuideWorker(store: GuideStore())
-//
-//    viewController.interactor = interactor
-//    viewController.router = router
-//  }
+    let presenter = MobileListPresenter()
+    presenter.viewController = viewController
+
+    let interactor = MobileListInteractor()
+    interactor.presenter = presenter
+    interactor.worker = MobileListWorker(store: MobileListStore())
+    
+
+    viewController.interactor = interactor
+    viewController.router = router
+  }
 
   // MARK: - View lifecycle
-    
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    setupCell()
+   
+    getPhones()
+    
+  }
+
+  func setupCell() {
     
     let bundle = Bundle(for: SegmentTableViewCell.self)
     let nib = UINib(nibName: "SegmentTableViewCell", bundle: bundle)
     tableViewControl.register(nib, forCellReuseIdentifier: "tableViewPhoneCell")
-   // doSomethingOnLoad()
-    getBeers() 
-    
   }
-    var arrApiPhone:[phone] = []
-    var page = 1
-    func getBeers() {
-        
-        let apiManager = ApiPhone()
-        apiManager.getPhone(urlString:"https://scb-test-mobile.herokuapp.com/api/mobiles/") { [weak self] (result: Result<[phone], APIError>) in
-            switch result {
-            case .success(let phone):
-                self?.arrApiPhone.append(contentsOf: phone)
-                DispatchQueue.main.sync {
-                    //self?.loadingView.isHidden = true
-                    self?.tableViewControl.reloadData()
-                    self?.page += 1
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .destructive)
-                alert.addAction(action)
-                DispatchQueue.main.sync {
-                    //  self?.loadingView.isHidden = true
-                    self?.present(alert, animated: true)
-                }
-            }
-        }
+   // MARK: - Event handling
+    func getPhones() {
+//        let request = MobileList.Something.Request()
+        interactor.getPhones(request: MobileList.Something.Request())
     }
-  // MARK: - Event handling
-  func doSomethingOnLoad() {
-    // NOTE: Ask the Interactor to do some work
-
-   // let request = Guide.Something.Request()
-   // interactor.doSomething(request: request)
-  }
+    
 
   // MARK: - Display logic
-
-  func displaySomething(viewModel: Guide.Something.ViewModel) {
-    // NOTE: Display the result from the Presenter
-
-    // nameTextField.text = viewModel.name
+  func mobileDisplay(viewModel: MobileList.Something.ViewModel) {
+    DispatchQueue.main.async {
+      self.modelPhone = viewModel.mobile
+      self.tableViewControl.reloadData()
+    }
   }
 
   // MARK: - Router
@@ -150,10 +112,9 @@ extension MobileListViewController:UITableViewDelegate{
         self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
     }
 }
-extension MobileListViewController:UITableViewDataSource{
+extension MobileListViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                print(arrApiPhone.count)
-        return arrApiPhone.count
+      return modelPhone.count
 
     }
     
@@ -161,7 +122,7 @@ extension MobileListViewController:UITableViewDataSource{
         
         guard let cell = tableViewControl.dequeueReusableCell(withIdentifier: "tableViewPhoneCell") as? SegmentTableViewCell else { return UITableViewCell() }
         
-        cell.setUi(classPhone: arrApiPhone[indexPath.row])
+      cell.setUi(classPhone: modelPhone[indexPath.row])
         return cell
     }
     

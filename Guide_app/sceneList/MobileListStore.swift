@@ -1,28 +1,51 @@
-////
-////  GuideStore.swift
-////  Guide_app
-////
-////  Created by Z64me on 16/9/2562 BE.
-////  Copyright (c) 2562 Z64me. All rights reserved.
-////
 //
-//import Foundation
+//  GuideStore.swift
+//  Guide_app
 //
-///*
+//  Created by Z64me on 16/9/2562 BE.
+//  Copyright (c) 2562 Z64me. All rights reserved.
 //
-// The GuideStore class implements the GuideStoreProtocol.
-//
-// The source for the data could be a database, cache, or a web service.
-//
-// You may remove these comments from the file.
-//
-// */
-//
-//class MobileListStore: MobileListStoreProtocol {
-//  func getData(_ completion: @escaping (Result<phone>) -> Void) {
-//    // Simulates an asynchronous background thread that calls back on the main thread after 2 seconds
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//     // completion(Result.success(phone()))
-//    }
-//  }
-//}
+
+import Foundation
+import Alamofire
+import SwiftyJSON
+
+enum ApiError: Error {
+  case success
+  case jsonError
+  case networkError
+}
+
+class MobileListStore: MobileListStoreProtocol {
+  
+  func getPhone(_ completion: @escaping (Result<Phone, ApiError>) -> Void) {
+    guard let url = URL(string: "https://scb-test-mobile.herokuapp.com/api/mobiles/") else {
+      return
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      if let _ = error {
+        print("error")
+      } else if let data = data, let response = response as? HTTPURLResponse {
+        if response.statusCode == 200 {
+          do {
+            let mobileList: Phone = try JSONDecoder().decode(Phone.self, from: data)
+            completion(Result.success(mobileList))
+            
+          } catch(let error) {
+            print("parse JSON failed")
+            print(error)
+            completion(Result.failure(ApiError.jsonError))
+          }
+        }
+      }
+    }
+    task.resume()
+  }
+  
+ 
+  
+  
+}

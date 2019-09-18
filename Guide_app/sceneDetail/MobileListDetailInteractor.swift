@@ -10,13 +10,13 @@ import UIKit
 
 protocol MobileListDetailInteractorInterface {
   //func doSomething(request: sceneDetail.Something.Request)
-  var model: phone? { get }
+  var model: [Phone?] { get }
 }
 
 class MobileListDetailInteractor: MobileListDetailInteractorInterface {
   var presenter: MobileListDetailPresenterInterface!
   var worker: MobileListDetailWorker?
-  var model: phone?
+  var model: [Phone?] = []
 
   // MARK: - Business logic
 

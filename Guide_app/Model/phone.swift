@@ -6,19 +6,20 @@
 import Foundation
 
 // MARK: - PhoneElement
-struct phone: Codable {
-    let thumbImageURL: String
-    let brand: String
-    let rating: Double
-    let name, phoneDescription: String
-    let id: Int
-    let price: Double
+struct Mobile: Codable {
+    let thumbImageURL: String?
+    let brand: String?
+    let rating: Double?
+    let name, phoneDescription: String?
+    let id: Int?
+    let price: Double?
     
     enum CodingKeys: String, CodingKey {
         case thumbImageURL, brand, rating, name
         case phoneDescription = "description"
         case id, price
     }
+    
 }
 
-typealias Phone = [phone]
+typealias Phone = [Mobile]

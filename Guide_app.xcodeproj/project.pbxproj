@@ -14,7 +14,6 @@
 		441F96B8232F8E6600B87C56 /* MobileList_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96B7232F8E6600B87C56 /* MobileList_appUITests.swift */; };
 		441F96CE232F8E9A00B87C56 /* MobileListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C6232F8E9A00B87C56 /* MobileListStore.swift */; };
 		441F96CF232F8E9A00B87C56 /* MobileListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C7232F8E9A00B87C56 /* MobileListPresenter.swift */; };
-		441F96D0232F8E9A00B87C56 /* MobileListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C8232F8E9A00B87C56 /* MobileListWorker.swift */; };
 		441F96D1232F8E9A00B87C56 /* MobileListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96C9232F8E9A00B87C56 /* MobileListRouter.swift */; };
 		441F96D2232F8E9A00B87C56 /* MobileListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CA232F8E9A00B87C56 /* MobileListModels.swift */; };
 		441F96D4232F8E9A00B87C56 /* MobileListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96CC232F8E9A00B87C56 /* MobileListInteractor.swift */; };
@@ -26,12 +25,13 @@
 		441F96E4232F93CE00B87C56 /* MobileListDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DC232F93CE00B87C56 /* MobileListDetailModels.swift */; };
 		441F96E5232F93CE00B87C56 /* MobileListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DD232F93CE00B87C56 /* MobileListDetailViewController.swift */; };
 		441F96E6232F93CE00B87C56 /* MobileListDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DE232F93CE00B87C56 /* MobileListDetailInteractor.swift */; };
-		441F96E7232F93CE00B87C56 /* MobileListDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DF232F93CE00B87C56 /* MobileListDetailEntity.swift */; };
+		441F96E7232F93CE00B87C56 /* imagePhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DF232F93CE00B87C56 /* imagePhone.swift */; };
 		441F96EA232F950800B87C56 /* sceneList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441F96E9232F950800B87C56 /* sceneList.storyboard */; };
 		441F96F0232FA5A100B87C56 /* SegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96EE232FA5A100B87C56 /* SegmentTableViewCell.swift */; };
 		441F96F1232FA5A100B87C56 /* SegmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441F96EF232FA5A100B87C56 /* SegmentTableViewCell.xib */; };
-		441F96F4232FD7C600B87C56 /* ApiPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F3232FD7C600B87C56 /* ApiPhone.swift */; };
+		441F96F4232FD7C600B87C56 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F3232FD7C600B87C56 /* ApiManager.swift */; };
 		441F96F62330B0D800B87C56 /* MobileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F52330B0D800B87C56 /* MobileListViewController.swift */; };
+		441F96FA2330E64A00B87C56 /* MobileListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F92330E64A00B87C56 /* MobileListWorker.swift */; };
 		CEEC1A4E070ABA6B9FBE7406 /* Pods_Guide_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F4515C3421272F0F59B910 /* Pods_Guide_app.framework */; };
 		FB5371EC480865CB77CD029A /* Pods_Guide_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111940B94BE10B3F8E3701AE /* Pods_Guide_appTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,6 @@
 		441F96B9232F8E6600B87C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441F96C6232F8E9A00B87C56 /* MobileListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListStore.swift; sourceTree = "<group>"; };
 		441F96C7232F8E9A00B87C56 /* MobileListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListPresenter.swift; sourceTree = "<group>"; };
-		441F96C8232F8E9A00B87C56 /* MobileListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListWorker.swift; sourceTree = "<group>"; };
 		441F96C9232F8E9A00B87C56 /* MobileListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListRouter.swift; sourceTree = "<group>"; };
 		441F96CA232F8E9A00B87C56 /* MobileListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListModels.swift; sourceTree = "<group>"; };
 		441F96CC232F8E9A00B87C56 /* MobileListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListInteractor.swift; sourceTree = "<group>"; };
@@ -81,12 +80,13 @@
 		441F96DC232F93CE00B87C56 /* MobileListDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailModels.swift; sourceTree = "<group>"; };
 		441F96DD232F93CE00B87C56 /* MobileListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailViewController.swift; sourceTree = "<group>"; };
 		441F96DE232F93CE00B87C56 /* MobileListDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailInteractor.swift; sourceTree = "<group>"; };
-		441F96DF232F93CE00B87C56 /* MobileListDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailEntity.swift; sourceTree = "<group>"; };
+		441F96DF232F93CE00B87C56 /* imagePhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePhone.swift; sourceTree = "<group>"; };
 		441F96E9232F950800B87C56 /* sceneList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sceneList.storyboard; sourceTree = "<group>"; };
 		441F96EE232FA5A100B87C56 /* SegmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentTableViewCell.swift; sourceTree = "<group>"; };
 		441F96EF232FA5A100B87C56 /* SegmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegmentTableViewCell.xib; sourceTree = "<group>"; };
-		441F96F3232FD7C600B87C56 /* ApiPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhone.swift; sourceTree = "<group>"; };
+		441F96F3232FD7C600B87C56 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		441F96F52330B0D800B87C56 /* MobileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileListViewController.swift; sourceTree = "<group>"; };
+		441F96F92330E64A00B87C56 /* MobileListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileListWorker.swift; sourceTree = "<group>"; };
 		6CEB37F403F1A13C8AE39F71 /* Pods-Guide_appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide_appUITests.debug.xcconfig"; path = "Target Support Files/Pods-Guide_appUITests/Pods-Guide_appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		77933FFE774A1307CFDD5D42 /* Pods-Guide_appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide_appUITests.release.xcconfig"; path = "Target Support Files/Pods-Guide_appUITests/Pods-Guide_appUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7E788F71277764CA4B07E9E9 /* Pods-Guide_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide_appTests.release.xcconfig"; path = "Target Support Files/Pods-Guide_appTests/Pods-Guide_appTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,10 +181,10 @@
 		441F96C5232F8E7500B87C56 /* sceneList */ = {
 			isa = PBXGroup;
 			children = (
+				441F96F92330E64A00B87C56 /* MobileListWorker.swift */,
 				441F96F52330B0D800B87C56 /* MobileListViewController.swift */,
 				441F96C6232F8E9A00B87C56 /* MobileListStore.swift */,
 				441F96C7232F8E9A00B87C56 /* MobileListPresenter.swift */,
-				441F96C8232F8E9A00B87C56 /* MobileListWorker.swift */,
 				441F96C9232F8E9A00B87C56 /* MobileListRouter.swift */,
 				441F96CA232F8E9A00B87C56 /* MobileListModels.swift */,
 				441F96CC232F8E9A00B87C56 /* MobileListInteractor.swift */,
@@ -196,14 +196,13 @@
 		441F96E8232F93D300B87C56 /* sceneDetail */ = {
 			isa = PBXGroup;
 			children = (
+				441F96DD232F93CE00B87C56 /* MobileListDetailViewController.swift */,
 				441F96D8232F93CE00B87C56 /* MobileListDetailStore.swift */,
 				441F96D9232F93CE00B87C56 /* MobileListDetailPresenter.swift */,
 				441F96DA232F93CE00B87C56 /* MobileListDetailWorker.swift */,
 				441F96DB232F93CE00B87C56 /* MobileListDetailRouter.swift */,
 				441F96DC232F93CE00B87C56 /* MobileListDetailModels.swift */,
-				441F96DD232F93CE00B87C56 /* MobileListDetailViewController.swift */,
 				441F96DE232F93CE00B87C56 /* MobileListDetailInteractor.swift */,
-				441F96DF232F93CE00B87C56 /* MobileListDetailEntity.swift */,
 			);
 			path = sceneDetail;
 			sourceTree = "<group>";
@@ -220,6 +219,7 @@
 		441F96F72330B8EC00B87C56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				441F96DF232F93CE00B87C56 /* imagePhone.swift */,
 				441F96CD232F8E9A00B87C56 /* phone.swift */,
 			);
 			path = Model;
@@ -228,7 +228,7 @@
 		441F96F82330B91C00B87C56 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				441F96F3232FD7C600B87C56 /* ApiPhone.swift */,
+				441F96F3232FD7C600B87C56 /* ApiManager.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -477,8 +477,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				441F96F4232FD7C600B87C56 /* ApiPhone.swift in Sources */,
+				441F96F4232FD7C600B87C56 /* ApiManager.swift in Sources */,
 				441F96E2232F93CE00B87C56 /* MobileListDetailWorker.swift in Sources */,
+				441F96FA2330E64A00B87C56 /* MobileListWorker.swift in Sources */,
 				441F96D4232F8E9A00B87C56 /* MobileListInteractor.swift in Sources */,
 				441F96D2232F8E9A00B87C56 /* MobileListModels.swift in Sources */,
 				441F96CF232F8E9A00B87C56 /* MobileListPresenter.swift in Sources */,
@@ -494,8 +495,7 @@
 				441F96CE232F8E9A00B87C56 /* MobileListStore.swift in Sources */,
 				441F96E1232F93CE00B87C56 /* MobileListDetailPresenter.swift in Sources */,
 				441F96E3232F93CE00B87C56 /* MobileListDetailRouter.swift in Sources */,
-				441F96E7232F93CE00B87C56 /* MobileListDetailEntity.swift in Sources */,
-				441F96D0232F8E9A00B87C56 /* MobileListWorker.swift in Sources */,
+				441F96E7232F93CE00B87C56 /* imagePhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

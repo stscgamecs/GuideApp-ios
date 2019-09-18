@@ -19,7 +19,7 @@ target 'Guide_app' do
     # Pods for testing
 
   end
-	pod 'Alamofire'
+	pod 'Alamofire', '~> 5.0.0-rc.2'
 	pod 'SwiftyJSON', '~> 4.0'
 	pod 'Kingfisher', '~> 5.0'
 	

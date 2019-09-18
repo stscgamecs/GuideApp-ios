@@ -8,14 +8,20 @@
 
 import UIKit
 
-struct Guide {
+struct MobileList {
   /// This structure represents a use case
   struct Something {
     /// Data struct sent to Interactor
-    struct Request {}
+    struct Request {
+        
+    }
     /// Data struct sent to Presenter
-    struct Response {}
+    struct Response {
+        let mobile:Phone
+    }
     /// Data struct sent to ViewController
-    struct ViewModel {}
+    struct ViewModel {
+      let mobile:Phone
+    }
   }
 }
