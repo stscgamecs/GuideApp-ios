@@ -370,13 +370,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.057368"
+            timestampString = "590641919.069483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "MobileListInteractor"
-            landmarkType = "3">
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "favSegment(request:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -386,11 +386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.057734"
+            timestampString = "590641919.069858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "favSegment(request:)"
             landmarkType = "7">
             <Locations>
@@ -434,11 +434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.057983"
+            timestampString = "590641919.0701129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "favSegment(request:)"
             landmarkType = "7">
             <Locations>
@@ -482,11 +482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.058207"
+            timestampString = "590641919.070349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "favSegment(request:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -498,11 +498,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.058427"
+            timestampString = "590641919.070582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "favSegment(request:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -514,13 +514,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
-            timestampString = "590638972.058648"
+            timestampString = "590641919.070817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "MobileListInteractor"
-            landmarkType = "3">
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "favSegment(request:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

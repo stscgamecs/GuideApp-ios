@@ -91,18 +91,22 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     self.tableViewControl.reloadData()
     }
   }
- 
+  var checkFav = false
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
       getPhones(favorite: false)
+      checkFav = false
     case 1:
+      
       getPhoneFavorite()
+      checkFav = true
     default:
       break
     }
     
   }
+  
   func getPhoneFavorite(){
     interactor.favSegment(request: MobileList.GetMobile.Request(checkFav: true))
   }
@@ -127,7 +131,16 @@ extension MobileListViewController:UITableViewDelegate{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete{
+      self.modelPhone.remove(at: indexPath.row)
+      self.tableViewControl.deleteRows(at:[indexPath], with: .fade)
+    }
+  }
 }
+
+
 extension MobileListViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return modelPhone.count
@@ -141,7 +154,7 @@ extension MobileListViewController: UITableViewDataSource{
     let phone = modelPhone[indexPath.row]
     let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
     
-    cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite)
+    cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite, isMenuFavorite: checkFav)
     let selectCell = modelPhone[indexPath.row].id
     
     cell.btnFavoriteAction = {

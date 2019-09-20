@@ -78,6 +78,7 @@ class MobileListInteractor: MobileListInteractorInterface {
       let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
       let respones = MobileList.GetMobile.Response(mobile: favPhone)
       self.presenter.presentPhone(response: respones)
+      
     }
   }
   

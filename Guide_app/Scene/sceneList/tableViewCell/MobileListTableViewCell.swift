@@ -23,22 +23,34 @@ class MobileListTableViewCell: UITableViewCell {
   @IBOutlet weak var rating: UILabel!
   @IBOutlet weak var btnFavorite: UIButton!
   
+  var favCheck = false
   var imageCheck = false
-  
   @IBAction func favorite(_ sender: Any) {
-      btnFavoriteAction?()
+    btnFavoriteAction?()
+    
   }
-  func setUi(classPhone: Mobile, isFavourite: Bool){
+  func setUi(classPhone: Mobile, isFavourite: Bool,isMenuFavorite:Bool){
     imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
     textBrand.text = classPhone.name
     subText.text = classPhone.phoneDescription
     price.text = "\(classPhone.price ?? 0)"
     rating.text = "\(classPhone.rating ?? 0)"
-    imageCheck = isFavourite
+    favCheck = isFavourite
     if isFavourite {
       btnFavorite.setImage(UIImage(named: "starSuccess"), for: UIControl.State.normal)
+      
     } else {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
     }
+    imageCheck = isMenuFavorite
+    if isMenuFavorite{
+      btnFavorite.isHidden = true
+    }else{
+       btnFavorite.isHidden = false
+    }
+    
+    
   }
+  
+  
 }
