@@ -24,6 +24,9 @@
                                     <segment title="All"/>
                                     <segment title="Favorite"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentMenu:" destination="mHM-gd-Loc" eventType="valueChanged" id="pEF-H4-cHv"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yQI-Tx-XhD">
                                 <rect key="frame" x="0.0" y="124" width="414" height="702"/>

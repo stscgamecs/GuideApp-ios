@@ -13,7 +13,7 @@ struct Mobile: Codable {
     let name, phoneDescription: String?
     let id: Int?
     let price: Double?
-    
+  
     enum CodingKeys: String, CodingKey {
         case thumbImageURL, brand, rating, name
         case phoneDescription = "description"

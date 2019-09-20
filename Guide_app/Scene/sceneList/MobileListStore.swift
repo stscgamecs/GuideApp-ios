@@ -31,9 +31,8 @@ class MobileListStore: MobileListStoreProtocol {
       } else if let data = data, let response = response as? HTTPURLResponse {
         if response.statusCode == 200 {
           do {
-            let mobileList: Phone = try JSONDecoder().decode(Phone.self, from: data)
-            completion(Result.success(mobileList))
-            
+              let mobileList: Phone = try JSONDecoder().decode(Phone.self, from: data)
+              completion(Result.success(mobileList))
           } catch(let error) {
             print("parse JSON failed")
             print(error)

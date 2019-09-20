@@ -10,10 +10,10 @@ import UIKit
 
 struct MobileList {
   /// This structure represents a use case
-  struct Something {
+  struct GetMobile {
     /// Data struct sent to Interactor
     struct Request {
-        
+      let checkFav: Bool
     }
     /// Data struct sent to Presenter
     struct Response {
@@ -24,4 +24,23 @@ struct MobileList {
       let mobile:Phone
     }
   }
+
+
+  struct AddFavoritMobile {
+    
+    struct Request {
+      let indexCell: Int
+    }
+    
+    struct Response {
+      
+      let checkFavorit: [Int:Bool]
+    }
+  
+    struct ViewModel {
+      let checkFavorit: [Int: Bool]
+    }
+  }
+  
+  
 }

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewPhoneCell" rowHeight="137" id="KGk-i7-Jjw" customClass="SegmentTableViewCell" customModule="Guide_app" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewPhoneCell" rowHeight="137" id="KGk-i7-Jjw" customClass="MobileListTableViewCell" customModule="Guide_app" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="660" height="137"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -53,6 +53,7 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="1"/>
                                                         <state key="normal" title="Button" image="star"/>
+                                                        <state key="selected" image="starSuccess"/>
                                                         <connections>
                                                             <action selector="favorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="puf-JX-ZeD"/>
                                                         </connections>
@@ -127,7 +128,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imageFavorite" destination="Zrk-pf-ZmM" id="Xcx-ae-MrT"/>
+                <outlet property="btnFavorite" destination="Zrk-pf-ZmM" id="Xcx-ae-MrT"/>
                 <outlet property="imagePhone" destination="tEY-ML-0Hx" id="iTB-Xi-rq8"/>
                 <outlet property="price" destination="csz-BA-Khd" id="Rb9-oQ-Ie4"/>
                 <outlet property="rating" destination="o7X-nY-KHk" id="qCC-KM-04Z"/>
@@ -139,5 +140,6 @@
     </objects>
     <resources>
         <image name="star" width="512" height="512"/>
+        <image name="starSuccess" width="512" height="512"/>
     </resources>
 </document>
