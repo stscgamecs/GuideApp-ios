@@ -50,7 +50,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCell()
-    getPhones(favorite: false)
+    getPhones()
   }
   
   
@@ -70,11 +70,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
   
   
-  
-// MARK: - Event handling
-  func getPhones(favorite: Bool) {
-    interactor.getPhones(request: MobileList.GetMobile.Request(checkFav: true))
-  }
+
   
   
   
@@ -91,24 +87,29 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     self.tableViewControl.reloadData()
     }
   }
-  var checkFav = false
+  var statusMenu = false
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
-      getPhones(favorite: false)
-      checkFav = false
+      statusMenu = false
+     getPhoneFavorite(statusMenu: statusMenu)
     case 1:
-      
-      getPhoneFavorite()
-      checkFav = true
+      statusMenu = true
+      getPhoneFavorite(statusMenu: statusMenu)
     default:
       break
     }
     
   }
   
-  func getPhoneFavorite(){
-    interactor.favSegment(request: MobileList.GetMobile.Request(checkFav: true))
+  // MARK: - Event handling
+  func getPhones() {
+    interactor.getPhones(request: MobileList.GetMobile.Request(checkFav: false))
+  }
+  func getPhoneFavorite(statusMenu:Bool){
+    let statusFav = MobileList.GetMobile.Request(checkFav: statusMenu)
+    interactor.favSegment(request: statusFav)
+    
   }
 // MARK: - Router
   
@@ -131,14 +132,24 @@ extension MobileListViewController:UITableViewDelegate{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
   }
-  
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    if statusMenu == true{
+      return true
+    }else{
+       return false
+    }
+   
+  }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete{
+    let selectCell = modelPhone[indexPath.row].id
+    self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
+    if editingStyle == .delete {
       self.modelPhone.remove(at: indexPath.row)
       self.tableViewControl.deleteRows(at:[indexPath], with: .fade)
     }
   }
 }
+
 
 
 extension MobileListViewController: UITableViewDataSource{
@@ -151,16 +162,17 @@ extension MobileListViewController: UITableViewDataSource{
     
     guard let cell = tableViewControl.dequeueReusableCell(withIdentifier: "tableViewPhoneCell") as? MobileListTableViewCell else { return UITableViewCell() }
     
-    let phone = modelPhone[indexPath.row]
-    let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
-    
-    cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite, isMenuFavorite: checkFav)
     let selectCell = modelPhone[indexPath.row].id
-    
     cell.btnFavoriteAction = {
-      self.interactor.addFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
-      
+      self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     }
+    let phone = modelPhone[indexPath.row]
+    
+    let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
+    cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite)
+    
+    let isHidden = statusMenu
+    cell.setFavHidden(isMenuFavorite:(isHidden))
     return cell
   }
   

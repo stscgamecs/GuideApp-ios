@@ -10,7 +10,7 @@ import UIKit
 
 protocol MobileListInteractorInterface {
   func getPhones(request: MobileList.GetMobile.Request)
-  func addFavorit(request: MobileList.AddFavoritMobile.Request)
+  func getFavorit(request: MobileList.AddFavoritMobile.Request)
   func favSegment(request: MobileList.GetMobile.Request)
 }
 
@@ -39,7 +39,7 @@ class MobileListInteractor: MobileListInteractorInterface {
     }
   }
   
-  func addFavorit(request: MobileList.AddFavoritMobile.Request) {
+  func getFavorit(request: MobileList.AddFavoritMobile.Request) {
     let id: Int = request.indexCell
     
     let index = favoritId.filter({ (fav) -> Bool in
@@ -80,6 +80,12 @@ class MobileListInteractor: MobileListInteractorInterface {
       self.presenter.presentPhone(response: respones)
       
     }
+    else{
+      let respones = MobileList.GetMobile.Response(mobile: phoneData)
+      self.presenter.presentPhone(response: respones)
+    }
+    
+    
   }
   
 }

@@ -11,9 +11,12 @@ import UIKit
 protocol MobileListPresenterInterface {
   func presentPhone(response: MobileList.GetMobile.Response)
   func presentAddFavorit(response: MobileList.AddFavoritMobile.Response)
+  
 }
 
 class MobileListPresenter: MobileListPresenterInterface {
+ 
+  
  
   
   weak var viewController: MobileListViewControllerInterface!
@@ -30,4 +33,7 @@ class MobileListPresenter: MobileListPresenterInterface {
     let viewModelFavorit = MobileList.AddFavoritMobile.ViewModel(checkFavorit: response.checkFavorit)
     viewController.displayAddFavorit(viewModel: viewModelFavorit)
   }
+  
+  
+  
 }

@@ -22,10 +22,12 @@ class MobileListStore: MobileListStoreProtocol {
     guard let url = URL(string: "https://scb-test-mobile.herokuapp.com/api/mobiles/") else {
       return
     }
+    
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      
       if let _ = error {
         print("error")
       } else if let data = data, let response = response as? HTTPURLResponse {
@@ -40,6 +42,7 @@ class MobileListStore: MobileListStoreProtocol {
           }
         }
       }
+      
     }
     task.resume()
   }

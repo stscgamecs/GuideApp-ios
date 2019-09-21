@@ -29,28 +29,29 @@ class MobileListTableViewCell: UITableViewCell {
     btnFavoriteAction?()
     
   }
-  func setUi(classPhone: Mobile, isFavourite: Bool,isMenuFavorite:Bool){
+  func setUi(classPhone: Mobile, isFavourite: Bool){
     imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
     textBrand.text = classPhone.name
     subText.text = classPhone.phoneDescription
     price.text = "\(classPhone.price ?? 0)"
     rating.text = "\(classPhone.rating ?? 0)"
     favCheck = isFavourite
-    if isFavourite {
+    
+    if isFavourite  {
       btnFavorite.setImage(UIImage(named: "starSuccess"), for: UIControl.State.normal)
       
     } else {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
     }
-    imageCheck = isMenuFavorite
-    if isMenuFavorite{
-      btnFavorite.isHidden = true
-    }else{
-       btnFavorite.isHidden = false
-    }
-    
-    
   }
-  
-  
+    func setFavHidden(isMenuFavorite: Bool){
+    imageCheck = isMenuFavorite
+    
+    if isMenuFavorite{
+    btnFavorite.isHidden = true
+    }else{
+    btnFavorite.isHidden = false
+    
+    }
+    }
 }

@@ -13,15 +13,17 @@ struct MobileList {
   struct GetMobile {
     /// Data struct sent to Interactor
     struct Request {
-      let checkFav: Bool
+      var checkFav: Bool
     }
     /// Data struct sent to Presenter
     struct Response {
         let mobile:Phone
+      
     }
     /// Data struct sent to ViewController
     struct ViewModel {
       let mobile:Phone
+      
     }
   }
 
