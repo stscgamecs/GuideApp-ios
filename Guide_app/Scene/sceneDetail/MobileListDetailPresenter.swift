@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MobileListDetailPresenterInterface {
-  func presentSomething(response: MobileListDetail.Something.Response)
+  func presentImagePhone(response: MobileListDetail.GetPhoneDetail.Response)
 }
 
 class MobileListDetailPresenter: MobileListDetailPresenterInterface {
@@ -17,10 +17,10 @@ class MobileListDetailPresenter: MobileListDetailPresenterInterface {
 
   // MARK: - Presentation logic
 
-  func presentSomething(response: MobileListDetail.Something.Response) {
+  func presentImagePhone(response: MobileListDetail.GetPhoneDetail.Response) {
     // NOTE: Format the response from the Interactor and pass the result back to the View Controller. The resulting view model should be using only primitive types. Eg: the view should not need to involve converting date object into a formatted string. The formatting is done here.
 
-    let viewModel = MobileListDetail.Something.ViewModel()
-    viewController.displaySomething(viewModel: viewModel)
+    let viewModel = MobileListDetail.GetPhoneDetail.ViewModel(phoneImage: response.phoneImage)
+    viewController.displayMobileImage(viewModel: viewModel)
   }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ImagePhone: Codable {
+struct ImageMobile: Codable {
   let mobileID, id: Int
   let url: String
   
@@ -18,4 +18,4 @@ struct ImagePhone: Codable {
   }
 }
 
-typealias ImagePhone = [ImagePhone]
+typealias ImagePhone = [ImageMobile]

@@ -7,7 +7,24 @@
 //
 
 import UIKit
-
+var imageCache: [String: UIImage] = [:]
 class MobileListDetailCollectionViewCell: UICollectionViewCell {
+  @IBOutlet weak var mobileImage: UIImageView!
+  
+  func setUiCollectionView(classImage: ImageMobile) {
     
+    if let image = imageCache[classImage.url]{
+      mobileImage.image = image
+    }else if let url = URL(string: classImage.url) {
+      if let data = try? Data(contentsOf: url) {
+        if let image = UIImage(data: data) {
+          imageCache[classImage.url] = image
+          self.mobileImage.image = image
+        }
+      }
+      
+    }
+    //mobileImage.image = imageURL
+  }
+  
 }

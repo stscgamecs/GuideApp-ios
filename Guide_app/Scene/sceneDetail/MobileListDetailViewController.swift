@@ -9,12 +9,17 @@
 import UIKit
 
 protocol MobileListDetailViewControllerInterface: class {
-  func displaySomething(viewModel: MobileListDetail.Something.ViewModel)
+  func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel)
 }
 
 class MobileListDetailViewController: UIViewController, MobileListDetailViewControllerInterface {
- // var interactor: sceneDetailInteractorInterface!
+ 
+  
+
+  
+  var interactor: MobileListDetailInteractorInterface!
   var router: MobileListDetailRouter!
+  
 
   // MARK: - Object lifecycle
 
@@ -26,52 +31,69 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   // MARK: - Configuration
 
   private func configure(viewController: MobileListDetailViewController) {
- //   let router = sceneDetailRouter()
-//    router.viewController = viewController
-//
-//    let presenter = sceneDetailPresenter()
-//    presenter.viewController = viewController
-//
-//    let interactor = sceneDetailInteractor()
-//    interactor.presenter = presenter
-//    interactor.worker = sceneDetailWorker(store: sceneDetailStore())
+    let router = MobileListDetailRouter()
+    router.viewController = viewController
 
-   // viewController.interactor = interactor
-   // viewController.router = router
+    let presenter = MobileListDetailPresenter()
+    presenter.viewController = viewController
+
+    let interactor = MobileListDetailInteractor()
+    interactor.presenter = presenter
+    interactor.worker = MobileListDetailWorker(store: MobileListDetailStore())
+
+    viewController.interactor = interactor
+    viewController.router = router
   }
 
   // MARK: - View lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    doSomethingOnLoad()
+    getPhone()
   }
 
   // MARK: - Event handling
 
-  func doSomethingOnLoad() {
+  func getPhone() {
     // NOTE: Ask the Interactor to do some work
 
- //   let request = sceneDetail.Something.Request()
- //   interactor.doSomething(request: request)
+   let request = MobileListDetail.GetPhoneDetail.Request()
+    interactor.getImagePhone(request: request)
   }
 
   // MARK: - Display logic
 
-  func displaySomething(viewModel: MobileListDetail.Something.ViewModel) {
+  
+  var arrayMobileList: ImagePhone = []
+  
+  @IBOutlet weak var subtextLabel: UILabel!
+  @IBOutlet weak var collectionView: UICollectionView!
+  
+  func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
     // NOTE: Display the result from the Presenter
-
+    arrayMobileList = viewModel.phoneImage
+    collectionView.reloadData()
     // nameTextField.text = viewModel.name
   }
 
   // MARK: - Router
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    router.passDataToNextScene(segue: segue)
-  }
+}
 
-  @IBAction func unwindTosceneDetailViewController(from segue: UIStoryboardSegue) {
-    print("unwind...")
-    router.passDataToNextScene(segue: segue)
+extension MobileListDetailViewController:UICollectionViewDataSource{
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return arrayMobileList.count
   }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MobileListDetailCollectionViewCell
+    let urlImage = arrayMobileList[indexPath.item]
+    cell.setUiCollectionView(classImage: urlImage)
+    return cell
+  }
+  
+  
+}
+extension MobileListDetailViewController:UICollectionViewDelegate{
+  
 }

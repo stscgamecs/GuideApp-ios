@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+import Alamofire
+import SwiftyJSON
 /*
 
  The sceneDetailStore class implements the sceneDetailStoreProtocol.
@@ -19,10 +20,43 @@ import Foundation
  */
 
 class MobileListDetailStore: MobileListDetailStoreProtocol {
-  //func getData(_ completion: @escaping (Result<phone>) -> Void) {
-    // Simulates an asynchronous background thread that calls back on the main thread after 2 seconds
-   // DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      //completion(Result.success(Entity()))
-    //}
-  //}
+
+  
+  
+  func getImageMobile(_ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
+
+    
+    let todoEndpoint: String = "https://scb-test-mobile.herokuapp.com/api/mobiles/1/images/"
+    AF.request(todoEndpoint)
+      .responseJSON { response in
+        switch response.result{
+        case .success(let value):
+          let array = JSON(value)
+          var images: ImagePhone = []
+          
+          for json in array.arrayValue {
+            let decoder = JSONDecoder()
+            if let image = try? decoder.decode(ImageMobile.self, from: json.rawData()) {
+              images.append(image)
+            }
+          }
+          completion(.success(images))
+          
+        case .failure(let error):
+          print(error)
+          completion(Result.failure(ApiError.jsonError))
+        }
+    }
+    
+    
+  
+}
+  
+  
+  
+  
+  
+  
+  
+  
 }

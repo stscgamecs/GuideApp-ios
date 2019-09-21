@@ -13,7 +13,7 @@ protocol MobileListDetailRouterInput {
 }
 
 class MobileListDetailRouter: MobileListDetailRouterInput {
-//  weak var viewController: sceneDetailViewController!
+ weak var viewController: MobileListDetailViewController!
 
   // MARK: - Navigation
 

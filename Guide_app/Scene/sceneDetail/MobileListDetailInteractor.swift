@@ -9,27 +9,34 @@
 import UIKit
 
 protocol MobileListDetailInteractorInterface {
-  //func doSomething(request: sceneDetail.Something.Request)
-  var model: [Phone?] { get }
+  func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request)
+  
 }
 
 class MobileListDetailInteractor: MobileListDetailInteractorInterface {
+ 
+  
   var presenter: MobileListDetailPresenterInterface!
   var worker: MobileListDetailWorker?
-  var model: [Phone?] = []
+  var model: ImagePhone = []
 
   // MARK: - Business logic
-
- // func doSomething(request: sceneDetail.Something.Request) {
-   // worker?.doSomeWork { [weak self] in
-     // if case let Result.success(data) = $0 {
-        // If the result was successful, we keep the data so that we can deliver it to another view controller through the router.
-        //self?.model = data
-     // }
-
-      // NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
-//      let response = sceneDetail.Something.Response()
-//      self?.presenter.presentSomething(response: response)
-//    }
-//  }
+  func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request) {
+    worker?.getMobile {  [weak self ] in
+      if case let Result.success(data) = $0 {
+        switch Result<ImagePhone, ApiError>.success(data){
+        case .success(let dataImage):
+          self?.model = dataImage
+          let respones = MobileListDetail.GetPhoneDetail.Response(phoneImage: dataImage)
+          self?.presenter.presentImagePhone(response: respones)
+          
+        case .failure(_): print("Error")
+        }
+      }
+      else{
+        return
+      }
+     }
+  }
+  
 }
