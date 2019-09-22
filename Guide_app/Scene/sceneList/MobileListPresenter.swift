@@ -16,18 +16,12 @@ protocol MobileListPresenterInterface {
 
 class MobileListPresenter: MobileListPresenterInterface {
   
-  
- 
-  
- 
-  
   weak var viewController: MobileListViewControllerInterface!
-
+  
   // MARK: - Presentation logic
-
+  
   func presentPhone(response: MobileList.GetMobile.Response) {
-    
-    let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile)
+    let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile, checkFavDelete: response.checkFavDeleteRes, typeBar: response.typeBar)
     viewController.mobileDisplay(viewModel: viewModel)
   }
   

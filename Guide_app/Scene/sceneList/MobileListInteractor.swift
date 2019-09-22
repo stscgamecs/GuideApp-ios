@@ -33,7 +33,7 @@ class MobileListInteractor: MobileListInteractorInterface {
         switch Result<Phone, ApiError>.success(data){
         case .success(let data):
           self?.phoneData = data
-          let respones = MobileList.GetMobile.Response(mobile: data)
+          let respones = MobileList.GetMobile.Response(mobile: data, checkFavDeleteRes: false, typeBar: .all)
           self?.presenter.presentPhone(response: respones)
           
         case .failure(_): print("Error")
@@ -47,21 +47,22 @@ class MobileListInteractor: MobileListInteractorInterface {
   }
   
   var sortStatus: SortingStatus?
-   var mobileData: Phone {
+   var mobileData: Phone
+   {
     var sortMobileData = phoneData
    if let sortType = sortStatus{
    switch sortType{
    case .priceHighToLow:
-     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
-           m1.price ?? 00 > m2.price ?? 00
+     sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
+           data0.price ?? 00 > data1.price ?? 00
         })
    case .priceLowToHigh:
-     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
-        m1.price ?? 00 < m2.price ?? 00
+     sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
+        data0.price ?? 00 < data1.price ?? 00
      })
    case .rating:
-     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
-        m1.rating ?? 00 > m2.rating ?? 00
+     sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
+        data0.rating ?? 00 > data1.rating ?? 00
      })
    }
    }
@@ -92,9 +93,11 @@ class MobileListInteractor: MobileListInteractorInterface {
     
   }
   
+  
   func favSegment(request: MobileList.GetMobile.Request) {
     
-    let isFavorite = request.checkFav
+    let isFavorite = request.typeBar
+    
     let favaIndex = favoritId.compactMap({ (favId) -> Int? in
       if favId.value == true {
         return favId.key
@@ -103,15 +106,17 @@ class MobileListInteractor: MobileListInteractorInterface {
       return nil
     })
    
-    if isFavorite{
+    if isFavorite == .favorite{
+      
       let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
-      let respones = MobileList.GetMobile.Response(mobile: favPhone)
+      let respones = MobileList.GetMobile.Response(mobile: favPhone, checkFavDeleteRes: true, typeBar: .favorite)
       self.presenter.presentPhone(response: respones)
       
     }
-    else{
-      let respones = MobileList.GetMobile.Response(mobile: phoneData)
+    else if isFavorite == .all{
+      let respones = MobileList.GetMobile.Response(mobile: phoneData, checkFavDeleteRes: false, typeBar: .all)
       self.presenter.presentPhone(response: respones)
+    
     }
     
     

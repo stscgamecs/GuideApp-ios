@@ -13,21 +13,29 @@ enum SortingStatus {
   case priceHighToLow
   case rating
 }
+enum StatusBar{
+  case all
+  case favorite
+}
 struct MobileList {
   /// This structure represents a use case
   struct GetMobile {
     /// Data struct sent to Interactor
     struct Request {
-      var checkFav: Bool
+      var typeBar: StatusBar
+      
     }
     /// Data struct sent to Presenter
     struct Response {
         let mobile:Phone
-      
+        var checkFavDeleteRes: Bool
+      var typeBar: StatusBar
     }
     /// Data struct sent to ViewController
     struct ViewModel {
       let mobile:Phone
+      var checkFavDelete: Bool
+       var typeBar: StatusBar
     }
   }
 

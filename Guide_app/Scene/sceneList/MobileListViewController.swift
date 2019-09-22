@@ -12,28 +12,27 @@ protocol MobileListViewControllerInterface: class {
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel)
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel)
   func  displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile)
-  }
+}
 
 
 class MobileListViewController: UIViewController,MobileListViewControllerInterface {
-  
-  
   
   var interactor: MobileListInteractorInterface!
   var router: MobileListRouter!
   var modelPhone: Phone = []
   var modelFavoritPhone: [Int: Bool] = [:]
-  
+  var statusFavForDelete : Bool = false
+  var typeBar: StatusBar = .all
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
   
-// MARK: - Object lifecycle
+  // MARK: - Object lifecycle
   override func awakeFromNib() {
     super.awakeFromNib()
     configure(viewController: self)
   }
   
-// MARK: - Configuration
+  // MARK: - Configuration
   private func configure(viewController: MobileListViewController) {
     let router = MobileListRouter()
     router.viewController = viewController
@@ -50,7 +49,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     viewController.router = router
   }
   
-// MARK: - View lifecycle
+  // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCell()
@@ -80,38 +79,39 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
   
   
-
   
   
   
-// MARK: - Display logic
+  
+  // MARK: - Display logic
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
     DispatchQueue.main.async {
       self.modelPhone = viewModel.mobile
+      self.statusFavForDelete = viewModel.checkFavDelete
+      self.typeBar = viewModel.typeBar
       self.tableViewControl.reloadData()
     }
   }
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
     DispatchQueue.main.async {
-    self.modelFavoritPhone = viewModel.checkFavorit
-    self.tableViewControl.reloadData()
+      self.modelFavoritPhone = viewModel.checkFavorit
+      
+      self.tableViewControl.reloadData()
     }
   }
   func displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile) {
-     DispatchQueue.main.async {
-    self.modelPhone = viewModel.mobile
-    self.tableViewControl.reloadData()
+    DispatchQueue.main.async {
+      self.modelPhone = viewModel.mobile
+      self.tableViewControl.reloadData()
     }
   }
-  var statusMenu = false
+  
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
-      statusMenu = false
-     getPhoneFavorite(statusMenu: statusMenu)
+      getPhones()
     case 1:
-      statusMenu = true
-      getPhoneFavorite(statusMenu: statusMenu)
+      getPhoneFavorite()
     default:
       break
     }
@@ -120,11 +120,10 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Event handling
   func getPhones() {
-    interactor.getPhones(request: MobileList.GetMobile.Request(checkFav: false))
+    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all))
   }
-  func getPhoneFavorite(statusMenu:Bool){
-    let statusFav = MobileList.GetMobile.Request(checkFav: statusMenu)
-    interactor.favSegment(request: statusFav)
+  func getPhoneFavorite(){
+    interactor.favSegment(request: MobileList.GetMobile.Request(typeBar: .favorite))
     
   }
   
@@ -137,7 +136,8 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   func getRating(){
     interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .rating))
   }
-// MARK: - Router
+  
+  // MARK: - Router
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowSomewhereScene",
@@ -153,19 +153,19 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
 }
 
+
 extension MobileListViewController:UITableViewDelegate{
+  
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexDescription = modelPhone[indexPath.item]
     self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
   }
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    if statusMenu == true{
-      return true
-    }else{
-       return false
-    }
-   
+    
+    return statusFavForDelete
+    
+    
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
@@ -182,7 +182,7 @@ extension MobileListViewController:UITableViewDelegate{
 extension MobileListViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return modelPhone.count
-
+    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,8 +197,7 @@ extension MobileListViewController: UITableViewDataSource{
     let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
     cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite)
     
-    let isHidden = statusMenu
-    cell.setFavHidden(isMenuFavorite:(isHidden))
+    cell.setFavHidden(isMenuFavorite: typeBar)
     return cell
   }
   
