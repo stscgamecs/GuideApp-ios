@@ -11,9 +11,13 @@ import UIKit
 protocol MobileListViewControllerInterface: class {
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel)
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel)
-}
+  func  displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile)
+  }
+
 
 class MobileListViewController: UIViewController,MobileListViewControllerInterface {
+  
+  
   
   var interactor: MobileListInteractorInterface!
   var router: MobileListRouter!
@@ -62,9 +66,15 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
   @IBAction func btnSort(_ sender: Any) {
     let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:nil))
-    alert.addAction(UIAlertAction(title: "Price low to low", style: .default, handler:nil))
-    alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:nil))
+    alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:{ action in
+      self.getSortPriceLowToHigh()
+    }))
+    alert.addAction(UIAlertAction(title: "Price low to low", style: .default, handler:{ action in
+      self.getSortPriceHighToLow()
+    }))
+    alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:{ action in
+      self.getRating()
+    }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(alert, animated: true)
   }
@@ -84,6 +94,12 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
     DispatchQueue.main.async {
     self.modelFavoritPhone = viewModel.checkFavorit
+    self.tableViewControl.reloadData()
+    }
+  }
+  func displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile) {
+     DispatchQueue.main.async {
+    self.modelPhone = viewModel.mobile
     self.tableViewControl.reloadData()
     }
   }
@@ -110,6 +126,16 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     let statusFav = MobileList.GetMobile.Request(checkFav: statusMenu)
     interactor.favSegment(request: statusFav)
     
+  }
+  
+  func getSortPriceLowToHigh(){
+    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceLowToHigh))
+  }
+  func getSortPriceHighToLow(){
+    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceHighToLow))
+  }
+  func getRating(){
+    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .rating))
   }
 // MARK: - Router
   

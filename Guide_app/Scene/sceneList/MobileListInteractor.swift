@@ -12,13 +12,20 @@ protocol MobileListInteractorInterface {
   func getPhones(request: MobileList.GetMobile.Request)
   func getFavorit(request: MobileList.AddFavoritMobile.Request)
   func favSegment(request: MobileList.GetMobile.Request)
+  func sortLowToHigth(request: MobileList.SortMobileList.RequestMobile)
+  
 }
 
 class MobileListInteractor: MobileListInteractorInterface {
+ 
+  
   var presenter: MobileListPresenterInterface!
   var worker: MobileListWorker?
   var phoneData: Phone = []
   var favoritId: [Int : Bool] = [:]
+  
+ 
+  
   // MARK: - Business logic
   func getPhones(request: MobileList.GetMobile.Request) {
     worker?.getPhone { [weak self ] in
@@ -38,6 +45,28 @@ class MobileListInteractor: MobileListInteractorInterface {
       
     }
   }
+  
+  var sortStatus: SortingStatus?
+   var mobileData: Phone {
+    var sortMobileData = phoneData
+   if let sortType = sortStatus{
+   switch sortType{
+   case .priceHighToLow:
+     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
+           m1.price ?? 00 > m2.price ?? 00
+        })
+   case .priceLowToHigh:
+     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
+        m1.price ?? 00 < m2.price ?? 00
+     })
+   case .rating:
+     sortMobileData = sortMobileData.sorted(by: { (m1, m2) -> Bool in
+        m1.rating ?? 00 > m2.rating ?? 00
+     })
+   }
+   }
+     return sortMobileData
+   }
   
   func getFavorit(request: MobileList.AddFavoritMobile.Request) {
     let id: Int = request.indexCell
@@ -87,5 +116,16 @@ class MobileListInteractor: MobileListInteractorInterface {
     
     
   }
+  
+
+  func sortLowToHigth(request: MobileList.SortMobileList.RequestMobile) {
+    sortStatus = request.sortingType
+    let respones = MobileList.SortMobileList.ResponseMobile(mobile: mobileData)
+    self.presenter.presentSortPriceLowToHigth(response: respones)
+
+  
+  }
+  
+  
   
 }
