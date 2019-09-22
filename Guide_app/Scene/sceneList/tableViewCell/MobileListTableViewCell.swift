@@ -44,13 +44,13 @@ class MobileListTableViewCell: UITableViewCell {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
     }
   }
-    func setFavHidden(isMenuFavorite: StatusBar){
+  func setFavHidden(isMenuFavorite: StatusBar){
     
     if isMenuFavorite == .favorite{
-    btnFavorite.isHidden = true
+      btnFavorite.isHidden = true
     }else if isMenuFavorite == .all{
-    btnFavorite.isHidden = false
-    
+      btnFavorite.isHidden = false
+      
     }
-    }
+  }
 }

@@ -15,9 +15,7 @@ protocol MobileListInteractorInterface {
   func getSort(request: MobileList.SortMobileList.RequestMobile)
   
 }
-
 class MobileListInteractor: MobileListInteractorInterface {
-  
   var presenter: MobileListPresenterInterface!
   var worker: MobileListWorker?
   var phoneData: Phone = []
@@ -88,17 +86,14 @@ class MobileListInteractor: MobileListInteractorInterface {
     
   }
   
-  
-  
   func getSort(request: MobileList.SortMobileList.RequestMobile) {
-  
     if isFavType == true{
       let favaIndex = favoritId.compactMap({ (favId) -> Int? in
-          if favId.value == true {
-            return favId.key
-          }
-          return nil
-        })
+        if favId.value == true {
+          return favId.key
+        }
+        return nil
+      })
       var mobileDataFav: Phone
       {
         
@@ -159,11 +154,6 @@ class MobileListInteractor: MobileListInteractorInterface {
       
     }
     
-    
-    
-    
   }
-  
-  
   
 }

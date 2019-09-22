@@ -27,7 +27,6 @@
 		441F96E6232F93CE00B87C56 /* MobileListDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DE232F93CE00B87C56 /* MobileListDetailInteractor.swift */; };
 		441F96E7232F93CE00B87C56 /* ImagePhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96DF232F93CE00B87C56 /* ImagePhone.swift */; };
 		441F96EA232F950800B87C56 /* sceneList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441F96E9232F950800B87C56 /* sceneList.storyboard */; };
-		441F96F4232FD7C600B87C56 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F3232FD7C600B87C56 /* ApiManager.swift */; };
 		441F96F62330B0D800B87C56 /* MobileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F52330B0D800B87C56 /* MobileListViewController.swift */; };
 		441F96FA2330E64A00B87C56 /* MobileListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F96F92330E64A00B87C56 /* MobileListWorker.swift */; };
 		442A79452334BDE9006C85A6 /* MobileListDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A79442334BDE9006C85A6 /* MobileListDetailCollectionViewCell.swift */; };
@@ -83,7 +82,6 @@
 		441F96DE232F93CE00B87C56 /* MobileListDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailInteractor.swift; sourceTree = "<group>"; };
 		441F96DF232F93CE00B87C56 /* ImagePhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePhone.swift; sourceTree = "<group>"; };
 		441F96E9232F950800B87C56 /* sceneList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sceneList.storyboard; sourceTree = "<group>"; };
-		441F96F3232FD7C600B87C56 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		441F96F52330B0D800B87C56 /* MobileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileListViewController.swift; sourceTree = "<group>"; };
 		441F96F92330E64A00B87C56 /* MobileListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileListWorker.swift; sourceTree = "<group>"; };
 		442A79442334BDE9006C85A6 /* MobileListDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileListDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 		441F9696232F8E6600B87C56 /* Guide_app */ = {
 			isa = PBXGroup;
 			children = (
-				441F96F82330B91C00B87C56 /* service */,
 				441F96F72330B8EC00B87C56 /* Model */,
 				4455B28623338F2A00943745 /* Scene */,
 				441F9697232F8E6600B87C56 /* AppDelegate.swift */,
@@ -225,14 +222,6 @@
 				441F96CD232F8E9A00B87C56 /* Phone.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		441F96F82330B91C00B87C56 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				441F96F3232FD7C600B87C56 /* ApiManager.swift */,
-			);
-			path = service;
 			sourceTree = "<group>";
 		};
 		442A79462334BDF1006C85A6 /* collectionViewCell */ = {
@@ -496,7 +485,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				441F96F4232FD7C600B87C56 /* ApiManager.swift in Sources */,
 				441F96E2232F93CE00B87C56 /* MobileListDetailWorker.swift in Sources */,
 				441F96FA2330E64A00B87C56 /* MobileListWorker.swift in Sources */,
 				441F96D4232F8E9A00B87C56 /* MobileListInteractor.swift in Sources */,

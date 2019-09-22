@@ -24,23 +24,22 @@ struct MobileList {
     /// Data struct sent to Interactor
     struct Request {
       var typeBar: StatusBar
-      
     }
     /// Data struct sent to Presenter
     struct Response {
-        let mobile:Phone
-        var checkFavDeleteRes: Bool
+      let mobile:Phone
+      var checkFavDeleteRes: Bool
       var typeBar: StatusBar
     }
     /// Data struct sent to ViewController
     struct ViewModel {
       let mobile:Phone
       var checkFavDelete: Bool
-       var typeBar: StatusBar
+      var typeBar: StatusBar
     }
   }
-
-
+  
+  
   struct AddFavoritMobile {
     
     struct Request {
@@ -51,28 +50,28 @@ struct MobileList {
       
       let checkFavorit: [Int:Bool]
     }
-  
+    
     struct ViewModel {
       let checkFavorit: [Int: Bool]
     }
   }
- 
-    /// This structure represents a use case
-    struct SortMobileList {
-      /// Data struct sent to Interactor
-      struct RequestMobile {
-        var sortingType: SortingStatus
-   
-      }
-      /// Data struct sent to Presenter
-      struct ResponseMobile {
-        let mobile:Phone
-        
-      }
-      /// Data struct sent to ViewController
-      struct ViewModelMobile {
-        let mobile:Phone
-      }
+  
+  /// This structure represents a use case
+  struct SortMobileList {
+    /// Data struct sent to Interactor
+    struct RequestMobile {
+      var sortingType: SortingStatus
+      
     }
+    /// Data struct sent to Presenter
+    struct ResponseMobile {
+      let mobile:Phone
+      
+    }
+    /// Data struct sent to ViewController
+    struct ViewModelMobile {
+      let mobile:Phone
+    }
+  }
   
 }

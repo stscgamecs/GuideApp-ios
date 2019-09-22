@@ -14,7 +14,6 @@ protocol MobileListViewControllerInterface: class {
   func  displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
 }
 
-
 class MobileListViewController: UIViewController,MobileListViewControllerInterface {
   
   var interactor: MobileListInteractorInterface!
@@ -56,8 +55,6 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     getPhones()
   }
   
-  
-  
   func setupCell() {
     let bundle = Bundle(for: MobileListTableViewCell.self)
     let nib = UINib(nibName: "MobileListTableViewCell", bundle: bundle)
@@ -77,11 +74,6 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(alert, animated: true)
   }
-  
-  
-  
-  
-  
   
   // MARK: - Display logic
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
@@ -138,7 +130,6 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
   
   // MARK: - Router
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowSomewhereScene",
       let viewController = segue.destination as? MobileListDetailViewController{
@@ -156,7 +147,6 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
 
 extension MobileListViewController:UITableViewDelegate{
   
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexDescription = modelPhone[indexPath.item]
     self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
@@ -164,8 +154,6 @@ extension MobileListViewController:UITableViewDelegate{
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     
     return statusFavForDelete
-    
-    
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
@@ -176,8 +164,6 @@ extension MobileListViewController:UITableViewDelegate{
     }
   }
 }
-
-
 
 extension MobileListViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

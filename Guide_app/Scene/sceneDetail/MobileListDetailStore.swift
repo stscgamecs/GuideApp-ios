@@ -10,21 +10,21 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 /*
-
+ 
  The sceneDetailStore class implements the sceneDetailStoreProtocol.
-
+ 
  The source for the data could be a database, cache, or a web service.
-
+ 
  You may remove these comments from the file.
-
+ 
  */
 
 class MobileListDetailStore: MobileListDetailStoreProtocol {
-
   
   
-  func getImageMobile(For number:Int, _ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
-
+  
+  func getImageMobile(sent number:Int, _ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
+    
     
     let todoEndpoint: String = "https://scb-test-mobile.herokuapp.com/api/mobiles/\(number)/images/"
     AF.request(todoEndpoint)
@@ -49,8 +49,8 @@ class MobileListDetailStore: MobileListDetailStoreProtocol {
     }
     
     
-  
-}
+    
+  }
   
   
   
