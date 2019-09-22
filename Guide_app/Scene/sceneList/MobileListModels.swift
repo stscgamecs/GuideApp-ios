@@ -9,6 +9,7 @@
 import UIKit
 
 enum SortingStatus {
+  case defaultMobile
   case priceLowToHigh
   case priceHighToLow
   case rating
@@ -61,6 +62,7 @@ struct MobileList {
       /// Data struct sent to Interactor
       struct RequestMobile {
         var sortingType: SortingStatus
+   
       }
       /// Data struct sent to Presenter
       struct ResponseMobile {

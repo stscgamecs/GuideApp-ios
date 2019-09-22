@@ -11,7 +11,7 @@ import UIKit
 protocol MobileListViewControllerInterface: class {
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel)
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel)
-  func  displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile)
+  func  displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
 }
 
 
@@ -99,7 +99,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
       self.tableViewControl.reloadData()
     }
   }
-  func displaySortPhoneLowTohigth(viewModel: MobileList.SortMobileList.ViewModelMobile) {
+  func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile) {
     DispatchQueue.main.async {
       self.modelPhone = viewModel.mobile
       self.tableViewControl.reloadData()
@@ -123,18 +123,18 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all))
   }
   func getPhoneFavorite(){
-    interactor.favSegment(request: MobileList.GetMobile.Request(typeBar: .favorite))
+    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar: .favorite))
     
   }
   
   func getSortPriceLowToHigh(){
-    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceLowToHigh))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceLowToHigh))
   }
   func getSortPriceHighToLow(){
-    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceHighToLow))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceHighToLow))
   }
   func getRating(){
-    interactor.sortLowToHigth(request: MobileList.SortMobileList.RequestMobile(sortingType: .rating))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile( sortingType: .rating))
   }
   
   // MARK: - Router
