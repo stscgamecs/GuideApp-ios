@@ -12,14 +12,18 @@ struct MobileListDetail {
   /// This structure represents a use case
   struct GetPhoneDetail {
     /// Data struct sent to Interactor
-    struct Request {}
+    struct Request {
+      let indexCell: Int
+    }
     /// Data struct sent to Presenter
     struct Response {
      let phoneImage : ImagePhone
+      
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-        let phoneImage : ImagePhone
+      let phoneImage : ImagePhone
+      
     }
   }
 }

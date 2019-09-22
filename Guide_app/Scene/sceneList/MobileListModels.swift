@@ -23,7 +23,6 @@ struct MobileList {
     /// Data struct sent to ViewController
     struct ViewModel {
       let mobile:Phone
-      
     }
   }
 

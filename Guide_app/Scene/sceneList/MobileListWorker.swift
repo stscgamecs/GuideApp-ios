@@ -9,7 +9,6 @@
 import UIKit
 
 protocol MobileListStoreProtocol {
-  //func getData(_ completion: @escaping (Result<phone>) -> Void)
     func getPhone(_ completion: @escaping (Result<Phone,ApiError>) -> Void)
 }
 

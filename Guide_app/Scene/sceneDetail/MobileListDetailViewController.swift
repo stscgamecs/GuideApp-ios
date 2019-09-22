@@ -13,71 +13,71 @@ protocol MobileListDetailViewControllerInterface: class {
 }
 
 class MobileListDetailViewController: UIViewController, MobileListDetailViewControllerInterface {
- 
-  
-
   
   var interactor: MobileListDetailInteractorInterface!
   var router: MobileListDetailRouter!
   
-
   // MARK: - Object lifecycle
-
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     configure(viewController: self)
   }
-
+  
   // MARK: - Configuration
-
+  
   private func configure(viewController: MobileListDetailViewController) {
     let router = MobileListDetailRouter()
     router.viewController = viewController
-
+    
     let presenter = MobileListDetailPresenter()
     presenter.viewController = viewController
-
+    
     let interactor = MobileListDetailInteractor()
     interactor.presenter = presenter
     interactor.worker = MobileListDetailWorker(store: MobileListDetailStore())
-
+    
     viewController.interactor = interactor
     viewController.router = router
   }
-
+  
   // MARK: - View lifecycle
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    getPhone()
+    getPhoneDetail()
   }
-
+  
   // MARK: - Event handling
-
-  func getPhone() {
-    // NOTE: Ask the Interactor to do some work
-
-   let request = MobileListDetail.GetPhoneDetail.Request()
+  var dataMobile :Mobile?
+  func getPhoneDetail() {
+    
+    let request = MobileListDetail.GetPhoneDetail.Request(indexCell: (dataMobile?.id)!)
     interactor.getImagePhone(request: request)
+    descriptionLabel.text = dataMobile?.phoneDescription
+    navText.title = dataMobile?.name
+    
   }
-
+  
   // MARK: - Display logic
-
-  
   var arrayMobileList: ImagePhone = []
-  
-  @IBOutlet weak var subtextLabel: UILabel!
+  @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var navText: UINavigationItem!
   
+  func displayDetail(viewModel: Mobile){
+    dataMobile = viewModel
+  }
+  // NOTE: Display the result from the Presenter
   func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
-    // NOTE: Display the result from the Presenter
+    
     arrayMobileList = viewModel.phoneImage
     collectionView.reloadData()
-    // nameTextField.text = viewModel.name
+    
   }
-
+  
   // MARK: - Router
-
+  
 }
 
 extension MobileListDetailViewController:UICollectionViewDataSource{
@@ -88,7 +88,7 @@ extension MobileListDetailViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MobileListDetailCollectionViewCell
     let urlImage = arrayMobileList[indexPath.item]
-    cell.setUiCollectionView(classImage: urlImage)
+    cell.setUiCollectionView(classImage: urlImage, classMobile: dataMobile! )
     return cell
   }
   

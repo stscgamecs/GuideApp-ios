@@ -115,8 +115,8 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowSomewhereScene",
-      let _ = segue.destination as? MobileListDetailViewController{
-      
+      let viewController = segue.destination as? MobileListDetailViewController{
+      viewController.displayDetail(viewModel: sender as! Mobile)
     }
     
   }
@@ -130,7 +130,8 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
 extension MobileListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.performSegue(withIdentifier: "ShowSomewhereScene", sender: nil)
+    let indexDescription = modelPhone[indexPath.item]
+    self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
   }
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     if statusMenu == true{
@@ -167,7 +168,6 @@ extension MobileListViewController: UITableViewDataSource{
       self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     }
     let phone = modelPhone[indexPath.row]
-    
     let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
     cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite)
     

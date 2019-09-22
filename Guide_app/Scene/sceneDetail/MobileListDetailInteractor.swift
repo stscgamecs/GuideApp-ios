@@ -10,19 +10,16 @@ import UIKit
 
 protocol MobileListDetailInteractorInterface {
   func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request)
-  
 }
 
 class MobileListDetailInteractor: MobileListDetailInteractorInterface {
- 
-  
   var presenter: MobileListDetailPresenterInterface!
   var worker: MobileListDetailWorker?
   var model: ImagePhone = []
-
+  
   // MARK: - Business logic
   func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request) {
-    worker?.getMobile {  [weak self ] in
+    worker?.getMobile(For: request.indexCell) {  [weak self ] in
       if case let Result.success(data) = $0 {
         switch Result<ImagePhone, ApiError>.success(data){
         case .success(let dataImage):
@@ -36,7 +33,7 @@ class MobileListDetailInteractor: MobileListDetailInteractorInterface {
       else{
         return
       }
-     }
+    }
   }
   
 }

@@ -23,10 +23,10 @@ class MobileListDetailStore: MobileListDetailStoreProtocol {
 
   
   
-  func getImageMobile(_ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
+  func getImageMobile(For number:Int, _ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
 
     
-    let todoEndpoint: String = "https://scb-test-mobile.herokuapp.com/api/mobiles/1/images/"
+    let todoEndpoint: String = "https://scb-test-mobile.herokuapp.com/api/mobiles/\(number)/images/"
     AF.request(todoEndpoint)
       .responseJSON { response in
         switch response.result{
