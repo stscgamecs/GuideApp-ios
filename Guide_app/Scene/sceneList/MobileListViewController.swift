@@ -22,7 +22,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   var modelFavoritPhone: [Int: Bool] = [:]
   var statusFavForDelete : Bool = false
   var typeBar: StatusBar = .all
-  var sortStatus: SortingStatus = .defaultMobile
+ // var sortStatus: SortingStatus = .defaultMobile
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
   
@@ -65,16 +65,16 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     
     let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:{ action in
-      self.sortStatus = .priceHighToLow
-      self.getSortPriceLowToHigh()
+
+      self.getSortImage(typeSort: .priceHighToLow)
     }))
     alert.addAction(UIAlertAction(title: "Price high to low", style: .default, handler:{ action in
-      self.sortStatus = .priceLowToHigh
-      self.getSortPriceHighToLow()
+
+      self.getSortImage(typeSort: .priceLowToHigh)
     }))
     alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:{ action in
-      self.sortStatus = .rating
-      self.getRating()
+
+      self.getSortImage(typeSort: .rating)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(alert, animated: true)
@@ -104,16 +104,13 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
-      typeBar = .all
       statusFavForDelete = false
-      getPhoneFavorite()
+      self.getPhoneFavorite(typeBar: .all)
       
       
     case 1:
-      
-      typeBar = .favorite
       statusFavForDelete = true
-      getPhoneFavorite()
+      self.getPhoneFavorite(typeBar: .favorite)
       
     default:
       break
@@ -123,21 +120,16 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Event handling
   func getPhones() {
-    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all,  sortingType: sortStatus))
+    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all))
   }
-  func getPhoneFavorite(){
-    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar:typeBar, sortingType: sortStatus))
+  func getPhoneFavorite(typeBar: StatusBar ){
+    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar:typeBar))
   }
   
-  func getSortPriceLowToHigh(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
+  func getSortImage(typeSort: SortingStatus){
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: typeSort))
   }
-  func getSortPriceHighToLow(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
-  }
-  func getRating(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile( sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
-  }
+
   
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
