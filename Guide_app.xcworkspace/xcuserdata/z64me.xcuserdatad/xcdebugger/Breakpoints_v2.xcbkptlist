@@ -517,8 +517,8 @@
             timestampString = "590842804.876678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "getPhone(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -534,8 +534,8 @@
             timestampString = "590842804.876714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "getPhone(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -551,8 +551,8 @@
             timestampString = "590842804.876749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "getPhone(_:)"
             landmarkType = "7">
          </BreakpointContent>

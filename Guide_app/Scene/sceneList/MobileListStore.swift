@@ -31,7 +31,9 @@ class MobileListStore: MobileListStoreProtocol {
       if let _ = error {
         print("error")
       } else if let data = data, let response = response as? HTTPURLResponse {
+          DispatchQueue.main.async {
         if response.statusCode == 200 {
+          
           do {
               let mobileList: Phone = try JSONDecoder().decode(Phone.self, from: data)
               completion(Result.success(mobileList))
@@ -41,6 +43,7 @@ class MobileListStore: MobileListStoreProtocol {
             completion(Result.failure(ApiError.jsonError))
           }
         }
+      }
       }
       
     }

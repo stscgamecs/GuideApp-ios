@@ -82,23 +82,23 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Display logic
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
-    DispatchQueue.main.async {
+   
       self.modelPhone = viewModel.mobile
       self.statusFavForDelete = viewModel.checkFavDelete
       self.tableViewControl.reloadData()
-    }
+    
   }
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
-    DispatchQueue.main.async {
+
       self.modelFavoritPhone = viewModel.checkFavorit
       self.tableViewControl.reloadData()
-    }
+    
   }
   func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile) {
-    DispatchQueue.main.async {
+   
       self.modelPhone = viewModel.mobile
       self.tableViewControl.reloadData()
-    }
+    
   }
   
   @IBAction func segmentMenu(_ sender: Any) {
