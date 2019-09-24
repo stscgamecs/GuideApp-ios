@@ -19,7 +19,8 @@ class MobileListDetailInteractor: MobileListDetailInteractorInterface {
   
   // MARK: - Business logic
   func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request) {
-    worker?.getMobile(sent: request.indexCell) {  [weak self ] in
+    worker?.getMobile(sent: request.idMobile) {  [weak self ] in
+      print(request.idMobile)
       if case let Result.success(data) = $0 {
         switch Result<ImagePhone, ApiError>.success(data){
         case .success(let dataImage):

@@ -33,7 +33,7 @@ class MobileListTableViewCell: UITableViewCell {
     imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
     textBrand.text = classPhone.name
     subText.text = classPhone.phoneDescription
-    price.text = "\(classPhone.price ?? 0)"
+    price.text = "$\(classPhone.price ?? 0)"
     rating.text = "\(classPhone.rating ?? 0)"
     favCheck = isFavourite
     

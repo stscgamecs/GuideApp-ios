@@ -21,7 +21,7 @@ class MobileListPresenter: MobileListPresenterInterface {
   // MARK: - Presentation logic
   
   func presentPhone(response: MobileList.GetMobile.Response) {
-    let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile, checkFavDelete: response.checkFavDeleteRes, typeBar: response.typeBar)
+    let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile, checkFavDelete: response.checkFavDeleteRes)
     viewController.mobileDisplay(viewModel: viewModel)
   }
   

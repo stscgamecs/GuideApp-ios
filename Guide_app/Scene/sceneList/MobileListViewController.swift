@@ -22,6 +22,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   var modelFavoritPhone: [Int: Bool] = [:]
   var statusFavForDelete : Bool = false
   var typeBar: StatusBar = .all
+  var sortStatus: SortingStatus = .defaultMobile
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
   
@@ -61,14 +62,18 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     tableViewControl.register(nib, forCellReuseIdentifier: "tableViewPhoneCell")
   }
   @IBAction func btnSort(_ sender: Any) {
+    
     let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:{ action in
+      self.sortStatus = .priceHighToLow
       self.getSortPriceLowToHigh()
     }))
-    alert.addAction(UIAlertAction(title: "Price low to low", style: .default, handler:{ action in
+    alert.addAction(UIAlertAction(title: "Price high to low", style: .default, handler:{ action in
+      self.sortStatus = .priceLowToHigh
       self.getSortPriceHighToLow()
     }))
     alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:{ action in
+      self.sortStatus = .rating
       self.getRating()
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -80,14 +85,12 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     DispatchQueue.main.async {
       self.modelPhone = viewModel.mobile
       self.statusFavForDelete = viewModel.checkFavDelete
-      self.typeBar = viewModel.typeBar
       self.tableViewControl.reloadData()
     }
   }
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
     DispatchQueue.main.async {
       self.modelFavoritPhone = viewModel.checkFavorit
-      
       self.tableViewControl.reloadData()
     }
   }
@@ -101,9 +104,17 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
-      getPhones()
-    case 1:
+      typeBar = .all
+      statusFavForDelete = false
       getPhoneFavorite()
+      
+      
+    case 1:
+      
+      typeBar = .favorite
+      statusFavForDelete = true
+      getPhoneFavorite()
+      
     default:
       break
     }
@@ -112,21 +123,20 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Event handling
   func getPhones() {
-    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all))
+    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all,  sortingType: sortStatus))
   }
   func getPhoneFavorite(){
-    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar: .favorite))
-    
+    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar:typeBar, sortingType: sortStatus))
   }
   
   func getSortPriceLowToHigh(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceLowToHigh))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
   }
   func getSortPriceHighToLow(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: .priceHighToLow))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
   }
   func getRating(){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile( sortingType: .rating))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile( sortingType: sortStatus, typeBar: typeBar, typeList: .sort))
   }
   
   // MARK: - Router

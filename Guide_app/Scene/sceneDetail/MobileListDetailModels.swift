@@ -13,7 +13,7 @@ struct MobileListDetail {
   struct GetPhoneDetail {
     /// Data struct sent to Interactor
     struct Request {
-      let indexCell: Int
+      let idMobile: Int
     }
     /// Data struct sent to Presenter
     struct Response {

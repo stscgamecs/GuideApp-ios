@@ -52,7 +52,7 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   var dataMobile :Mobile?
   func getPhoneDetail() {
     
-    let request = MobileListDetail.GetPhoneDetail.Request(indexCell: (dataMobile?.id)!)
+    let request = MobileListDetail.GetPhoneDetail.Request(idMobile: (dataMobile?.id)!)
     interactor.getImagePhone(request: request)
     descriptionLabel.text = dataMobile?.phoneDescription
     navText.title = dataMobile?.name
