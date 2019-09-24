@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MobileListDetailStoreProtocol {
-  func getImageMobile(sent number: Int,_ completion: @escaping (Result<ImagePhone,ApiError>) -> Void)
+  func getImageMobile(sent number: Int,_ completion: @escaping (Result<ImagePhones,ApiError>) -> Void)
 }
 
 class MobileListDetailWorker {
@@ -21,7 +21,7 @@ class MobileListDetailWorker {
   }
   
   // MARK: - Business Logic
-  func getMobile(sent number: Int,_ completion: @escaping (Result<ImagePhone,ApiError>) -> Void) {
+  func getMobile(sent number: Int,_ completion: @escaping (Result<ImagePhones,ApiError>) -> Void) {
     store.getImageMobile(sent: number){
       completion($0)
     }

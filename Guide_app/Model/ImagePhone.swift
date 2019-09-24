@@ -10,7 +10,7 @@ import Foundation
 
 struct ImageMobile: Codable {
   let mobileID, id: Int
-  let url: String
+  var url: String
   
   enum CodingKeys: String, CodingKey {
     case mobileID = "mobile_id"
@@ -18,4 +18,4 @@ struct ImageMobile: Codable {
   }
 }
 
-typealias ImagePhone = [ImageMobile]
+typealias ImagePhones = [ImageMobile]

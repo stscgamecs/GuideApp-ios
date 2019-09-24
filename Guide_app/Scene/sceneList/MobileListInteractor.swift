@@ -64,14 +64,14 @@ class MobileListInteractor: MobileListInteractorInterface {
   func getFavSegment(request: MobileList.GetMobile.Request) {
     let typeBar = request.typeBar
     let sortType = request.sortingType
-    let favaIndex = favoritId.compactMap({ (favId) -> Int? in
-      if favId.value == true {
-        return favId.key
-      }
-      return nil
-    })
-    
+
     if typeBar == .favorite{
+      let favaIndex = favoritId.compactMap({ (favId) -> Int? in
+         if favId.value == true {
+           return favId.key
+         }
+         return nil
+       })
       var mobileDataFav: Phone
       {
         
@@ -100,18 +100,12 @@ class MobileListInteractor: MobileListInteractorInterface {
       sortStatus = request.sortingType
       let respones = MobileList.SortMobileList.ResponseMobile(mobile: mobileDataFav)
       self.presenter.presentSort(response: respones)
-//      
-//      let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
-//      let respones = MobileList.GetMobile.Response(mobile: favPhone, checkFavDeleteRes: true)
-//      self.presenter.presentPhone(response: respones)
-    
+      
     }
     else if typeBar == .all{
       
       var mobileDataFav: Phone
       {
-        
-        let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
         var sortMobileData=phoneData
         if let sortType = sortStatus{
           switch sortType{
@@ -136,7 +130,7 @@ class MobileListInteractor: MobileListInteractorInterface {
       sortStatus = request.sortingType
       let respones = MobileList.SortMobileList.ResponseMobile(mobile: mobileDataFav)
       self.presenter.presentSort(response: respones)
-     
+      
     }
     
     
@@ -145,17 +139,13 @@ class MobileListInteractor: MobileListInteractorInterface {
   func getSort(request: MobileList.SortMobileList.RequestMobile) {
     
     let typeBar = request.typeBar
+    if typeBar == .favorite{
       let favaIndex = favoritId.compactMap({ (favId) -> Int? in
-        if favId.value == true {
-          return favId.key
-        }
-        return nil
-      })
-  if typeBar == .favorite{
-    
-    
-    
-    
+           if favId.value == true {
+             return favId.key
+           }
+           return nil
+         })
       var mobileDataFav: Phone
       {
         
@@ -175,8 +165,8 @@ class MobileListInteractor: MobileListInteractorInterface {
             sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
               data0.rating ?? 00 > data1.rating ?? 00
             })
-          case .defaultMobile:
-            return sortMobileData
+          case .defaultMobile: break
+          
           }
         }
         return sortMobileData
@@ -203,8 +193,8 @@ class MobileListInteractor: MobileListInteractorInterface {
             sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
               data0.rating ?? 00 > data1.rating ?? 00
             })
-          case .defaultMobile:
-            return sortMobileData
+          case .defaultMobile: break
+       
           }
         }
         return sortMobileData

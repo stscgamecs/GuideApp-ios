@@ -23,26 +23,43 @@ class MobileListDetailStore: MobileListDetailStoreProtocol {
   
   
   
-  func getImageMobile(sent mobile_id:Int, _ completion: @escaping (Result<ImagePhone, ApiError>) -> Void) {
+  func getImageMobile(sent mobile_id:Int, _ completion: @escaping (Result<ImagePhones, ApiError>) -> Void) {
     
     
-    let todoEndpoint: String = "https://scb-test-mobile.herokuapp.com/api/mobiles/\(mobile_id)/images/"
+    
+    
+    guard let todoEndpoint = URL(string: "https://scb-test-mobile.herokuapp.com/api/mobiles/\(mobile_id)/images/") else {
+      return
+    }
+
     AF.request(todoEndpoint)
       .responseJSON { response in
+
         switch response.result{
-        case .success(let value):
-          let array = JSON(value)
-          var images: ImagePhone = []
+        case .success(let dataImage):
+
+          let array = JSON(dataImage)
+          var images: ImagePhones = []
+
           for json in array.arrayValue {
             let decoder = JSONDecoder()
             if let image = try? decoder.decode(ImageMobile.self, from: json.rawData()) {
-              images.append(image)
+              
+//               image.url = "https://\(image.url)"
+                images.append(image)
+//              if image.url ==  "https://\(image.url)"{
+//                let urlImage = image
+//                images.append(urlImage)
+//              }
+              
+              
             }
           }
           completion(.success(images))
-          
+
         case .failure(let error):
           print(error)
+
           completion(Result.failure(ApiError.jsonError))
         }
     }

@@ -60,7 +60,7 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   }
   
   // MARK: - Display logic
-  var arrayMobileList: ImagePhone = []
+  var arrayMobileList: [String] = []
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var navText: UINavigationItem!
@@ -71,7 +71,7 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   // NOTE: Display the result from the Presenter
   func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
     
-    arrayMobileList = viewModel.phoneImage
+    arrayMobileList = viewModel.arrayStringImage
     collectionView.reloadData()
     
   }
@@ -87,7 +87,7 @@ extension MobileListDetailViewController:UICollectionViewDataSource{
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MobileListDetailCollectionViewCell
-    let urlImage = arrayMobileList[indexPath.item]
+    let urlImage = arrayMobileList[indexPath.row]
     cell.setUiCollectionView(classImage: urlImage, classMobile: dataMobile! )
     return cell
   }

@@ -17,13 +17,14 @@ struct MobileListDetail {
     }
     /// Data struct sent to Presenter
     struct Response {
-     let phoneImage : ImagePhone
+//      let urlName: ImageMobile
+      var phoneImages : ImagePhones
       
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      let phoneImage : ImagePhone
-      
+      let phoneImages : ImagePhones
+      let arrayStringImage: [String]
     }
   }
 }

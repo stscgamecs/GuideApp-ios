@@ -167,6 +167,7 @@ extension MobileListViewController:UITableViewDelegate{
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
+    
     self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     if editingStyle == .delete {
       self.modelPhone.remove(at: indexPath.row)
