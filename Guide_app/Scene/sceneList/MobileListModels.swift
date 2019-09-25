@@ -14,8 +14,7 @@ enum SortingStatus {
   case priceHighToLow
   case rating
 }
-enum StatusBar{
- 
+enum SegmentStatus{
   case all
   case favorite
 }
@@ -25,18 +24,18 @@ struct MobileList {
   struct GetMobile {
     /// Data struct sent to Interactor
     struct Request {
-      var typeBar: StatusBar
+      var segmentStatus: SegmentStatus
        //var sortingType: SortingStatus
     }
     /// Data struct sent to Presenter
     struct Response {
-      let mobile:Phone
+      let mobile:Phones
       var checkFavDeleteRes: Bool
      
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      let mobile:Phone
+      let mobile:Phones
       var checkFavDelete: Bool
       
     }
@@ -65,18 +64,18 @@ struct MobileList {
   struct SortMobileList {
     /// Data struct sent to Interactor
     struct RequestMobile {
-      var sortingType: SortingStatus
+      var sortingStatus: SortingStatus
       //var typeBar: StatusBar
      
     }
     /// Data struct sent to Presenter
     struct ResponseMobile {
-      let mobile:Phone
+      let mobile:Phones
       
     }
     /// Data struct sent to ViewController
     struct ViewModelMobile {
-      let mobile:Phone
+      let mobile:Phones
     }
   }
   

@@ -16,24 +16,12 @@ class MobileListDetailCollectionViewCell: UICollectionViewCell {
     ratingLabel.text = "\(classMobile.rating ?? 0)"
     priceLabel.text = "\(classMobile.price ?? 0)"
    let  urlString = classImage
-    
-//    if urlString.hasPrefix("https://") || urlString.hasPrefix("http://"){
-//        let myURL = URL(string: urlString)
-//        let myRequest = URLRequest(url: myURL!)
-////        webView.load(myRequest)
-//    }else {
-//        let correctedURL = "http://\(urlString)"
-//        let myURL = URL(string: correctedURL)
-//        let myRequest = URLRequest(url: myURL!)
-////        webView.load(myRequest)
-//    }
     if let image = imageCache[urlString]{
       mobileImage.image = image
     }
       
     else if let url = URL(string: urlString) {
-      
-      
+
       if let data = try? Data(contentsOf: url) {
         
         if let image = UIImage(data: data) {

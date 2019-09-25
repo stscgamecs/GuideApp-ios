@@ -11,37 +11,34 @@ import UIKit
 protocol MobileListInteractorInterface {
   func getPhones(request: MobileList.GetMobile.Request)
   func getFavorit(request: MobileList.AddFavoritMobile.Request)
-  func getFavSegment(request: MobileList.GetMobile.Request)
+  func getSegment(request: MobileList.GetMobile.Request)
   func getSort(request: MobileList.SortMobileList.RequestMobile)
-  
 }
 class MobileListInteractor: MobileListInteractorInterface {
   var presenter: MobileListPresenterInterface!
   var worker: MobileListWorker?
-  var phoneData: Phone = []
+  var arrayPhone: Phones = []
   var favoritId: [Int : Bool] = [:]
-  var sortStatusType: SortingStatus?
-  var statusBarType: StatusBar?
+  var sortStatus: SortingStatus?
+  var statusSegment: SegmentStatus?
   
-  //var isFavType:Bool = false
   // MARK: - Business logic
   func getPhones(request: MobileList.GetMobile.Request) {
-    
     worker?.getPhone { [weak self ] in
       if case let Result.success(data) = $0 {
-        switch Result<Phone, ApiError>.success(data){
+        switch Result<Phones, ApiError> .success(data){
         case .success(let data):
-          self?.phoneData = data
+          self?.arrayPhone = data
           let respones = MobileList.GetMobile.Response(mobile: data, checkFavDeleteRes: false)
           self?.presenter.presentPhone(response: respones)
           
-        case .failure(_): print("Error")
+        case .failure(_):  break
         }
+        
       }
       else{
         return
       }
-      
     }
   }
   
@@ -63,134 +60,73 @@ class MobileListInteractor: MobileListInteractorInterface {
     self.presenter.presentAddFavorit(response: respones)
   }
   
-  func getFavSegment(request: MobileList.GetMobile.Request) {
-    let typeBar = request.typeBar
+  var arrayPhoneSuccess: Phones
+  {
+    var arrayPhoneForSort = arrayPhone
+    let segmentType = statusSegment
     
-    statusBarType = typeBar
-    var mobileDataFav: Phone
-    {
-      var sortMobileData = phoneData
-      if typeBar == .favorite {
-        
-        let favaIndex = favoritId.compactMap({ (favId) -> Int? in
-          if favId.value == true {
-            return favId.key
-          }
-          return nil
-        })
-        let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
-        sortMobileData = favPhone
-      }else if typeBar == .all{
-        sortMobileData = phoneData
-      }
-      
-      if let sortType = sortStatusType{
-        switch sortType{
-        case .priceHighToLow:
-          sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-            data0.price ?? 00 > data1.price ?? 00
-          })
-        case .priceLowToHigh:
-          sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-            data0.price ?? 00 < data1.price ?? 00
-          })
-        case .rating:
-          sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-            data0.rating ?? 00 > data1.rating ?? 00
-          })
-        case .defaultMobile:
-          return sortMobileData
+    if segmentType == .favorite {
+      let favaIndex = favoritId.compactMap({ (favId) -> Int? in
+        if favId.value == true {
+          return favId.key
         }
-      }
-      return sortMobileData
+        return nil
+      })
+      let favPhone = arrayPhone.filter{favaIndex.contains($0.id!)}
+      arrayPhoneForSort = favPhone
+    }
+    else if segmentType == .all{
+      arrayPhoneForSort = arrayPhone
     }
     
-    let respones = MobileList.SortMobileList.ResponseMobile(mobile: mobileDataFav)
-    self.presenter.presentSort(response: respones)
+    if let sortType = sortStatus{
+      switch sortType{
+      case .priceHighToLow:
+        
+        arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
+          data0.price ?? 00 > data1.price ?? 00
+        })
+      case .priceLowToHigh:
+        arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
+          data0.price ?? 00 < data1.price ?? 00
+        })
+      case .rating:
+        arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
+          data0.rating ?? 00 > data1.rating ?? 00
+        })
+      case .defaultMobile:
+        break
+      }
+    }
+    return arrayPhoneForSort
     
   }
   
-  func getSort(request: MobileList.SortMobileList.RequestMobile) {
-    let newSortStatus = request.sortingType
-    sortStatusType = newSortStatus
-    var mobileDataFav: Phone
-    {
-      var sortMobileData = phoneData
-      
-      if let typeBar = statusBarType{
-        switch typeBar {
-        case .all:
-          sortMobileData = phoneData
-          if newSortStatus == .priceHighToLow{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.price ?? 00 > data1.price ?? 00
-            })}
-          if newSortStatus == .priceLowToHigh{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.price ?? 00 < data1.price ?? 00
-            })
-          }
-          if newSortStatus == .rating{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.rating ?? 00 > data1.rating ?? 00
-            })
-          }
-          let respones = MobileList.SortMobileList.ResponseMobile(mobile: sortMobileData)
-          self.presenter.presentSort(response: respones)
-          
-          return sortMobileData
-          
-        case .favorite:
-          let favaIndex = favoritId.compactMap({ (favId) -> Int? in
-            if favId.value == true {
-              return favId.key
-            }
-            return nil
-          })
-          let favPhone = phoneData.filter{favaIndex.contains($0.id!)}
-          sortMobileData = favPhone
-          
-          if newSortStatus == .priceHighToLow{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.price ?? 00 > data1.price ?? 00
-            })}
-          if newSortStatus == .priceLowToHigh{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.price ?? 00 < data1.price ?? 00
-            })
-          }
-          if newSortStatus == .rating{
-            sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-              data0.rating ?? 00 > data1.rating ?? 00
-            })
-          }
-          let respones = MobileList.SortMobileList.ResponseMobile(mobile: sortMobileData)
-          self.presenter.presentSort(response: respones)
-          
-          return sortMobileData
-        }
-        
-      }
-      
-      
-      if newSortStatus == .priceHighToLow{
-        sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 00 > data1.price ?? 00
-        })}
-      if newSortStatus == .priceLowToHigh{
-        sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 00 < data1.price ?? 00
-        })
-      }
-      if newSortStatus == .rating{
-        sortMobileData = sortMobileData.sorted(by: { (data0, data1) -> Bool in
-          data0.rating ?? 00 > data1.rating ?? 00
-        })
-      }
-      return sortMobileData
-    }
-    let respones = MobileList.SortMobileList.ResponseMobile(mobile: mobileDataFav)
+  func getSegment(request: MobileList.GetMobile.Request) {
+    let typeSegmentRequest = request.segmentStatus
+    statusSegment = typeSegmentRequest
+    let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
     self.presenter.presentSort(response: respones)
+    
   }
+  func getSort(request: MobileList.SortMobileList.RequestMobile) {
+    let sortTypeRequest = request.sortingStatus
+    sortStatus = sortTypeRequest
+    if sortTypeRequest == .priceHighToLow{
+      let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
+      self.presenter.presentSort(response: respones)
+    }
+    if sortTypeRequest == .priceLowToHigh{
+      let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
+      self.presenter.presentSort(response: respones)
+    }
+    if sortTypeRequest == .rating{
+      let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
+      self.presenter.presentSort(response: respones)
+    }
+  }
+  
+  
+  
   
 }

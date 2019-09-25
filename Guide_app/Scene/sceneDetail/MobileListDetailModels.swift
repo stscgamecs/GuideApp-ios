@@ -17,7 +17,6 @@ struct MobileListDetail {
     }
     /// Data struct sent to Presenter
     struct Response {
-//      let urlName: ImageMobile
       var phoneImages : ImagePhones
       
     }

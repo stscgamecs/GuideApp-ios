@@ -18,7 +18,7 @@ enum ApiError: Error {
 
 class MobileListStore: MobileListStoreProtocol {
   
-  func getPhone(_ completion: @escaping (Result<Phone, ApiError>) -> Void) {
+  func getPhone(_ completion: @escaping (Result<Phones, ApiError>) -> Void) {
     guard let url = URL(string: "https://scb-test-mobile.herokuapp.com/api/mobiles/") else {
       return
     }
@@ -35,7 +35,7 @@ class MobileListStore: MobileListStoreProtocol {
         if response.statusCode == 200 {
           
           do {
-              let mobileList: Phone = try JSONDecoder().decode(Phone.self, from: data)
+              let mobileList: Phones = try JSONDecoder().decode(Phones.self, from: data)
               completion(Result.success(mobileList))
           } catch(let error) {
             print("parse JSON failed")

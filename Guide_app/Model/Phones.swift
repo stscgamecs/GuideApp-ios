@@ -22,4 +22,4 @@ struct Mobile: Codable {
     
 }
 
-typealias Phone = [Mobile]
+typealias Phones = [Mobile]

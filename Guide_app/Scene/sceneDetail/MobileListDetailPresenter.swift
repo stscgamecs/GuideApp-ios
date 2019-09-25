@@ -23,7 +23,6 @@ class MobileListDetailPresenter: MobileListDetailPresenterInterface {
     var myArrayPhoneImage: [String] = []
     for i in 0 ... response.phoneImages.count - 1{
       var urlName = response.phoneImages[i].url
-//      if urlName.starts(with: "https://"){
       if urlName.range(of: "https://") == nil && urlName.range(of: "http://") == nil{
         urlName = "https://" + response.phoneImages[i].url
         myArrayPhoneImage.append(urlName)

@@ -24,7 +24,7 @@ class MobileListTableViewCell: UITableViewCell {
   @IBOutlet weak var btnFavorite: UIButton!
   
   var favCheck = false
-  var imageCheck = StatusBar.self
+  var imageCheck = SegmentStatus.self
   @IBAction func favorite(_ sender: Any) {
     btnFavoriteAction?()
     
@@ -44,7 +44,7 @@ class MobileListTableViewCell: UITableViewCell {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
     }
   }
-  func setFavHidden(isMenuFavorite: StatusBar){
+  func setFavHidden(isMenuFavorite: SegmentStatus){
     
     if isMenuFavorite == .favorite{
       btnFavorite.isHidden = true

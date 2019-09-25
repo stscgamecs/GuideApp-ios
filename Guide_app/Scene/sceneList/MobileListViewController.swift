@@ -18,11 +18,11 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   var interactor: MobileListInteractorInterface!
   var router: MobileListRouter!
-  var modelPhone: Phone = []
+  var modelPhone: Phones = []
   var modelFavoritPhone: [Int: Bool] = [:]
   var statusFavForDelete : Bool = false
-  var typeBar: StatusBar = .all
- // var sortStatus: SortingStatus = .defaultMobile
+  var typeBar: SegmentStatus = .all
+
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
   
@@ -54,6 +54,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     super.viewDidLoad()
     setupCell()
     getPhones()
+    
   }
   
   func setupCell() {
@@ -120,14 +121,15 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Event handling
   func getPhones() {
-    interactor.getPhones(request: MobileList.GetMobile.Request(typeBar: .all))
+    interactor.getPhones(request: MobileList.GetMobile.Request(segmentStatus: .all))
   }
-  func getPhoneFavorite(typeBar: StatusBar ){
-    interactor.getFavSegment(request: MobileList.GetMobile.Request(typeBar:typeBar))
+  
+  func getPhoneFavorite(typeBar: SegmentStatus ){
+    interactor.getSegment(request: MobileList.GetMobile.Request(segmentStatus:typeBar))
   }
   
   func getSortImage(typeSort: SortingStatus){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingType: typeSort))
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingStatus: typeSort))
   }
 
   
@@ -152,6 +154,7 @@ extension MobileListViewController:UITableViewDelegate{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexDescription = modelPhone[indexPath.item]
     self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
+      
   }
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     
