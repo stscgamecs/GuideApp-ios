@@ -126,8 +126,6 @@
                                         <size key="customSize" width="412" height="333"/>
                                         <connections>
                                             <outlet property="mobileImage" destination="0JX-TW-Xzk" id="GoM-PW-Z5S"/>
-                                            <outlet property="priceLabel" destination="26i-zB-cBB" id="efY-3s-Ymh"/>
-                                            <outlet property="ratingLabel" destination="0UK-QG-wDy" id="0z2-W6-z3a"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -181,10 +179,10 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5Bq-Vg-VdT" secondAttribute="trailing" id="GaS-wF-7Mx"/>
                                     <constraint firstItem="5Bq-Vg-VdT" firstAttribute="leading" secondItem="qs0-cH-qL3" secondAttribute="leading" id="MEW-3c-vhe"/>
@@ -219,6 +217,8 @@
                         <outlet property="collectionView" destination="W4M-sV-cPm" id="BQM-hC-D7q"/>
                         <outlet property="descriptionLabel" destination="2GF-2D-lFB" id="44X-oL-qte"/>
                         <outlet property="navText" destination="Tf7-BH-tCl" id="qeh-Cs-n0s"/>
+                        <outlet property="priceLabel" destination="26i-zB-cBB" id="fEq-s5-IEN"/>
+                        <outlet property="ratingLabel" destination="0UK-QG-wDy" id="QoS-g4-hjh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ep-5t-R3u" userLabel="First Responder" sceneMemberID="firstResponder"/>

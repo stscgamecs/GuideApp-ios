@@ -1,19 +1,19 @@
 //
-//  sceneDetailRouter.swift
+//  sceneTestRouter.swift
 //  Guide_app
 //
-//  Created by Z64me on 16/9/2562 BE.
+//  Created by Z64me on 26/9/2562 BE.
 //  Copyright (c) 2562 Z64me. All rights reserved.
 //
 
 import UIKit
 
-protocol MobileListDetailRouterInput {
+protocol sceneTestRouterInput {
   func navigateToSomewhere()
 }
 
-class MobileListDetailRouter: MobileListDetailRouterInput {
- weak var viewController: MobileListDetailViewController!
+class sceneTestRouter: sceneTestRouterInput {
+  weak var viewController: sceneTestViewController!
 
   // MARK: - Navigation
 
@@ -37,14 +37,13 @@ class MobileListDetailRouter: MobileListDetailRouterInput {
 
   // MARK: - Communication
 
-//  func passDataToNextScene(segue: UIStoryboardSegue,sender: Any) {
-//    // NOTE: Teach the router which scenes it can communicate with
-//
-////    if segue.identifier == "ShowSomewhereScene",
-////          let viewController = segue.destination as? MobileListDetailViewController{
-////      viewController.displayDetail(viewModel: sender as! Mobile )
-////        }
-//  }
+  func passDataToNextScene(segue: UIStoryboardSegue) {
+    // NOTE: Teach the router which scenes it can communicate with
+
+    if segue.identifier == "ShowSomewhereScene" {
+      passDataToSomewhereScene(segue: segue)
+    }
+  }
 
   func passDataToSomewhereScene(segue: UIStoryboardSegue) {
     // NOTE: Teach the router how to pass data to the next scene

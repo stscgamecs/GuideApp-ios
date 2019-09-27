@@ -9,10 +9,10 @@ import Foundation
 struct Mobile: Codable {
     let thumbImageURL: String?
     let brand: String?
-    let rating: Double?
-    let name, phoneDescription: String?
-    let id: Int?
-    let price: Double?
+    var rating: Double?
+   var name, phoneDescription: String?
+    var id: Int?
+    var price: Double?
   
     enum CodingKeys: String, CodingKey {
         case thumbImageURL, brand, rating, name

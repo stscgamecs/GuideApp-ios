@@ -11,7 +11,7 @@ import UIKit
 protocol MobileListViewControllerInterface: class {
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel)
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel)
-  func  displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
+  func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
 }
 
 class MobileListViewController: UIViewController,MobileListViewControllerInterface {
@@ -22,6 +22,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   var modelFavoritPhone: [Int: Bool] = [:]
   var statusFavForDelete : Bool = false
   var typeBar: SegmentStatus = .all
+  
 
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
@@ -53,7 +54,7 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCell()
-    getPhones()
+    getPhone(segmentType: .all)
     
   }
   
@@ -67,15 +68,15 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:{ action in
 
-      self.getSortImage(typeSort: .priceHighToLow)
+      self.getSortImage(sortType: .priceHighToLow)
     }))
     alert.addAction(UIAlertAction(title: "Price high to low", style: .default, handler:{ action in
 
-      self.getSortImage(typeSort: .priceLowToHigh)
+      self.getSortImage(sortType: .priceLowToHigh)
     }))
     alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:{ action in
 
-      self.getSortImage(typeSort: .rating)
+      self.getSortImage(sortType: .rating)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(alert, animated: true)
@@ -83,36 +84,31 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Display logic
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
-   
+     
       self.modelPhone = viewModel.mobile
-      self.statusFavForDelete = viewModel.checkFavDelete
       self.tableViewControl.reloadData()
-    
   }
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
 
       self.modelFavoritPhone = viewModel.checkFavorit
       self.tableViewControl.reloadData()
-    
   }
   func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile) {
    
       self.modelPhone = viewModel.mobile
       self.tableViewControl.reloadData()
-    
   }
   
   @IBAction func segmentMenu(_ sender: Any) {
     switch segMentControl.selectedSegmentIndex {
     case 0 :
+      typeBar = .all
       statusFavForDelete = false
-      self.getPhoneFavorite(typeBar: .all)
-      
-      
+      self.getPhone(segmentType: .all)
     case 1:
+      typeBar = .favorite
       statusFavForDelete = true
-      self.getPhoneFavorite(typeBar: .favorite)
-      
+      self.getPhone(segmentType: .favorite)
     default:
       break
     }
@@ -120,32 +116,30 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   }
   
   // MARK: - Event handling
-  func getPhones() {
-    interactor.getPhones(request: MobileList.GetMobile.Request(segmentStatus: .all))
+  func getPhone(segmentType: SegmentStatus){
+    interactor.getSegment(request: MobileList.GetMobile.Request(segmentStatus: segmentType))
   }
   
-  func getPhoneFavorite(typeBar: SegmentStatus ){
-    interactor.getSegment(request: MobileList.GetMobile.Request(segmentStatus:typeBar))
-  }
-  
-  func getSortImage(typeSort: SortingStatus){
-    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingStatus: typeSort))
+  func getSortImage(sortType: SortingStatus){
+    interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingStatus: sortType))
   }
 
   
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowSomewhereScene",
-      let viewController = segue.destination as? MobileListDetailViewController{
-      viewController.displayDetail(viewModel: sender as! Mobile)
-    }
+////    router.passDataToSomewhereScene(for: segue, sender:sender as Any)
+//    if segue.identifier == "ShowSomewhereScene",
+//      let viewController = segue.destination as? MobileListDetailViewController{
+//      viewController.displayDetail(viewModel: sender as! Mobile)
+//    }
+    router.passDataToNextScene(segue: segue, sender: sender)
     
   }
   
-  @IBAction func unwindToGuideViewController(from segue: UIStoryboardSegue) {
-    print("unwind...")
-    router.passDataToNextScene(segue: segue)
-  }
+//  @IBAction func unwindToGuideViewController(from segue: UIStoryboardSegue) {
+//    print("unwind...")
+////    router.passDataToNextScene()
+//  }
 }
 
 
@@ -153,12 +147,13 @@ extension MobileListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexDescription = modelPhone[indexPath.item]
-    self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
+    
+    router.navigateToSomewhere(sender: indexDescription)
+  //self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
       
   }
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    
-    return statusFavForDelete
+      return statusFavForDelete
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
@@ -185,11 +180,13 @@ extension MobileListViewController: UITableViewDataSource{
     cell.btnFavoriteAction = {
       self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     }
+    
     let phone = modelPhone[indexPath.row]
     let isFavourite = modelFavoritPhone[phone.id ?? 0] ?? false
-    cell.setUi(classPhone: modelPhone[indexPath.row], isFavourite: isFavourite)
+    cell.setUi(classPhone: modelPhone[indexPath.row],
+               isFavourite: isFavourite,
+               isMenuFavorite: typeBar)
     
-    cell.setFavHidden(isMenuFavorite: typeBar)
     return cell
   }
   

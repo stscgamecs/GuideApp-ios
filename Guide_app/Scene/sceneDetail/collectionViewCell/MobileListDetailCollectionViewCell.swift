@@ -10,11 +10,11 @@ import UIKit
 var imageCache: [String: UIImage] = [:]
 class MobileListDetailCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var mobileImage: UIImageView!
-  @IBOutlet weak var ratingLabel: UILabel!
-  @IBOutlet weak var priceLabel: UILabel!
-  func setUiCollectionView(classImage: String,classMobile: Mobile) {
-    ratingLabel.text = "\(classMobile.rating ?? 0)"
-    priceLabel.text = "\(classMobile.price ?? 0)"
+//  @IBOutlet weak var ratingLabel: UILabel!
+//  @IBOutlet weak var priceLabel: UILabel!
+  func setUiCollectionView(classImage: String) {
+//    ratingLabel.text = "\(classMobile.rating ?? 0)"
+//    priceLabel.text = "$\(classMobile.price ?? 0)"
    let  urlString = classImage
     if let image = imageCache[urlString]{
       mobileImage.image = image

@@ -9,7 +9,7 @@
 import Foundation
 
 struct ImageMobile: Codable {
-  let mobileID, id: Int
+  var mobileID, id: Int
   var url: String
   
   enum CodingKeys: String, CodingKey {

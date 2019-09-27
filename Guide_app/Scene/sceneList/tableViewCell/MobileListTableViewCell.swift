@@ -24,12 +24,10 @@ class MobileListTableViewCell: UITableViewCell {
   @IBOutlet weak var btnFavorite: UIButton!
   
   var favCheck = false
-  var imageCheck = SegmentStatus.self
   @IBAction func favorite(_ sender: Any) {
     btnFavoriteAction?()
-    
   }
-  func setUi(classPhone: Mobile, isFavourite: Bool){
+  func setUi(classPhone: Mobile, isFavourite: Bool ,isMenuFavorite: SegmentStatus){
     imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
     textBrand.text = classPhone.name
     subText.text = classPhone.phoneDescription
@@ -37,20 +35,17 @@ class MobileListTableViewCell: UITableViewCell {
     rating.text = "\(classPhone.rating ?? 0)"
     favCheck = isFavourite
     
-    if isFavourite  {
+    if isFavourite{
       btnFavorite.setImage(UIImage(named: "starSuccess"), for: UIControl.State.normal)
-      
     } else {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)
     }
-  }
-  func setFavHidden(isMenuFavorite: SegmentStatus){
     
-    if isMenuFavorite == .favorite{
-      btnFavorite.isHidden = true
-    }else if isMenuFavorite == .all{
-      btnFavorite.isHidden = false
-      
-    }
+    switch isMenuFavorite {
+         case .all:
+           btnFavorite.isHidden = false
+         case .favorite:
+           btnFavorite.isHidden = true
+         }
   }
 }

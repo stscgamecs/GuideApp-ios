@@ -9,32 +9,27 @@
 import UIKit
 
 protocol MobileListRouterInput {
-  func navigateToShowImage()
+  func navigateToSomewhere(sender: Mobile)
 }
-
 class MobileListRouter: MobileListRouterInput {
   weak var viewController: MobileListViewController!
-  
-  // MARK: - Navigation
-  
-  func navigateToShowImage() {
- 
+// MARK: - Navigation
+  func navigateToSomewhere(sender: Mobile) {
+    viewController.performSegue(withIdentifier: "ShowSomewhereScene", sender: sender)
   }
+// MARK: - Communication
   
-  // MARK: - Communication
-  
-  func passDataToNextScene(segue: UIStoryboardSegue) {
+  func passDataToNextScene(segue: UIStoryboardSegue,sender: Any?) {
     // NOTE: Teach the router which scenes it can communicate with
-    
     if segue.identifier == "ShowSomewhereScene" {
-      passDataToSomewhereScene(segue: segue)
+      passDataToSomewhereScene(segue: segue, sender: sender as! Mobile)
     }
   }
   
-  func passDataToSomewhereScene(segue: UIStoryboardSegue) {
-    // NOTE: Teach the router how to pass data to the next scene
-    
-    // let someWhereViewController = segue.destinationViewController as! SomeWhereViewController
-    // someWhereViewController.interactor.model = viewController.interactor.model
+  func passDataToSomewhereScene(segue: UIStoryboardSegue , sender: Mobile) {
+// NOTE: Teach the router how to pass data to the next scene
+    let mobileViewController = segue.destination as? MobileListDetailViewController
+    mobileViewController?.interactor.model = sender
   }
+  
 }

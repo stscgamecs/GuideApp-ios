@@ -9,7 +9,7 @@
 import UIKit
 
 enum SortingStatus {
-  case defaultMobile
+  
   case priceLowToHigh
   case priceHighToLow
   case rating
@@ -25,36 +25,33 @@ struct MobileList {
     /// Data struct sent to Interactor
     struct Request {
       var segmentStatus: SegmentStatus
-       //var sortingType: SortingStatus
+  
     }
     /// Data struct sent to Presenter
     struct Response {
       let mobile:Phones
-      var checkFavDeleteRes: Bool
-     
+      
+      
     }
     /// Data struct sent to ViewController
     struct ViewModel {
       let mobile:Phones
-      var checkFavDelete: Bool
       
     }
   }
   
-  
+   /// This structure represents a use case
   struct AddFavoritMobile {
-    
+     /// Data struct sent to Interactor
     struct Request {
       let indexCell: Int
-    
       
     }
-    
+     /// Data struct sent to Presenter
     struct Response {
-      
       let checkFavorit: [Int:Bool]
     }
-    
+     /// Data struct sent to ViewController
     struct ViewModel {
       let checkFavorit: [Int: Bool]
     }
@@ -65,8 +62,8 @@ struct MobileList {
     /// Data struct sent to Interactor
     struct RequestMobile {
       var sortingStatus: SortingStatus
-      //var typeBar: StatusBar
-     
+      
+      
     }
     /// Data struct sent to Presenter
     struct ResponseMobile {

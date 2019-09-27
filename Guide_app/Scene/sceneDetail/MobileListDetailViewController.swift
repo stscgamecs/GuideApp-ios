@@ -10,9 +10,12 @@ import UIKit
 
 protocol MobileListDetailViewControllerInterface: class {
   func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel)
+  func displayMobileDetail(viewModel: MobileListDetail.GetPhone.ViewModel)
 }
 
 class MobileListDetailViewController: UIViewController, MobileListDetailViewControllerInterface {
+  
+  
   
   var interactor: MobileListDetailInteractorInterface!
   var router: MobileListDetailRouter!
@@ -45,17 +48,27 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getPhoneDetail()
-  }
-  
-  // MARK: - Event handling
-  var dataMobile :Mobile?
-  func getPhoneDetail() {
+    setPhone()
+    setPhoneDetailImage()
     
-    let request = MobileListDetail.GetPhoneDetail.Request(idMobile: (dataMobile?.id)!)
+  }
+  var dataMobile : Mobile?
+  func displayMobileDetail(viewModel: MobileListDetail.GetPhone.ViewModel) {
+    
+    priceLabel.text = viewModel.price
+    ratingLabel.text = viewModel.rating
+    descriptionLabel.text = viewModel.Discription
+  }
+  // MARK: - Event handling
+  func setPhone(){
+    let request = MobileListDetail.GetPhone.Request()
+    interactor.getDataPhone(request: request)
+  }
+  func setPhoneDetailImage() {
+    let request = MobileListDetail.GetPhoneDetail.Request()
     interactor.getImagePhone(request: request)
-    descriptionLabel.text = dataMobile?.phoneDescription
-    navText.title = dataMobile?.name
+    
+    
     
   }
   
@@ -65,9 +78,9 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var navText: UINavigationItem!
   
-  func displayDetail(viewModel: Mobile){
-    dataMobile = viewModel
-  }
+  @IBOutlet weak var ratingLabel: UILabel!
+  @IBOutlet weak var priceLabel: UILabel!
+  
   // NOTE: Display the result from the Presenter
   func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
     
@@ -88,7 +101,10 @@ extension MobileListDetailViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MobileListDetailCollectionViewCell
     let urlImage = arrayMobileList[indexPath.row]
-    cell.setUiCollectionView(classImage: urlImage, classMobile: dataMobile! )
+    
+    cell.setUiCollectionView(classImage: urlImage)
+    
+    
     return cell
   }
   
