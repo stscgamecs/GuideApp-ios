@@ -12,24 +12,25 @@ protocol MobileListRouterInput {
   func navigateToSomewhere(sender: Mobile)
 }
 class MobileListRouter: MobileListRouterInput {
+  
   weak var viewController: MobileListViewController!
-// MARK: - Navigation
+  
+  // MARK: - Navigation
+  
   func navigateToSomewhere(sender: Mobile) {
     viewController.performSegue(withIdentifier: "ShowSomewhereScene", sender: sender)
   }
-// MARK: - Communication
+  
+  // MARK: - Communication
   
   func passDataToNextScene(segue: UIStoryboardSegue,sender: Any?) {
-    // NOTE: Teach the router which scenes it can communicate with
     if segue.identifier == "ShowSomewhereScene" {
       passDataToSomewhereScene(segue: segue, sender: sender as! Mobile)
     }
   }
   
   func passDataToSomewhereScene(segue: UIStoryboardSegue , sender: Mobile) {
-// NOTE: Teach the router how to pass data to the next scene
     let mobileViewController = segue.destination as? MobileListDetailViewController
     mobileViewController?.interactor.model = sender
   }
-  
 }

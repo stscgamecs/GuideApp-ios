@@ -15,7 +15,7 @@ protocol MobileListDetailInteractorInterface {
 }
 
 class MobileListDetailInteractor: MobileListDetailInteractorInterface {
- 
+  
   var  model: Mobile?
   var presenter: MobileListDetailPresenterInterface!
   var worker: MobileListDetailWorker?
@@ -33,7 +33,7 @@ class MobileListDetailInteractor: MobileListDetailInteractorInterface {
         case .failure(_): break
         }
       }
-      else{
+      else {
         return
       }
     }
@@ -41,8 +41,5 @@ class MobileListDetailInteractor: MobileListDetailInteractorInterface {
   func getDataPhone(request: MobileListDetail.GetPhone.Request) {
     let respones = MobileListDetail.GetPhone.Response(phone: model!)
     self.presenter.presentPhone(response: respones)
-   }
-  
-  
-  
+  }
 }

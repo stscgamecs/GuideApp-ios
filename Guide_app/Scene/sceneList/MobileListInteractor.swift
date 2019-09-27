@@ -4,7 +4,6 @@
 //
 //  Created by Z64me on 16/9/2562 BE.
 //  Copyright (c) 2562 Z64me. All rights reserved.
-//
 
 import UIKit
 
@@ -15,7 +14,6 @@ protocol MobileListInteractorInterface {
   var arrayPhone: Phones  {get set}
 }
 class MobileListInteractor: MobileListInteractorInterface {
-  
   var presenter: MobileListPresenterInterface!
   var worker: MobileListWorker?
   var arrayPhone: Phones = []
@@ -24,27 +22,26 @@ class MobileListInteractor: MobileListInteractorInterface {
   var segmentStatus: SegmentStatus?
   
   // MARK: - Business logic
-  
   func getFavorit(request: MobileList.AddFavoritMobile.Request) {
     let id: Int = request.indexCell
-    let index = favoritId.filter({ (fav) -> Bool in
+    let index = favoritId.filter( { (fav) -> Bool in
       if fav.value == true{
         return true
       }
       return false
     })
     
-    if index.firstIndex(where: {$0.key == id}) != nil{
+    if index.firstIndex(where: {$0.key == id}) != nil {
       favoritId.updateValue(false, forKey: id)
-    }else{
+    }else {
       favoritId.updateValue(true, forKey: id)
     }
+    
     let respones = MobileList.AddFavoritMobile.Response(checkFavorit: favoritId)
     self.presenter.presentAddFavorit(response: respones)
   }
   
-  var arrayPhoneSuccess: Phones
-  {
+  var arrayPhoneSuccess: Phones {
     var arrayPhoneForSort = arrayPhone
     let segmentType = segmentStatus
     
@@ -53,7 +50,7 @@ class MobileListInteractor: MobileListInteractorInterface {
       if sortStatus == .none {
         worker?.getPhone { [weak self ] in
           if case let Result.success(data) = $0 {
-            switch Result<Phones, ApiError> .success(data){
+            switch Result<Phones, ApiError> .success(data) {
             case .success(let data):
               self?.arrayPhone = data
               let respones = MobileList.GetMobile.Response(mobile: data)
@@ -61,16 +58,16 @@ class MobileListInteractor: MobileListInteractorInterface {
               
             case .failure(_):  break
             }
-            
-          }
-          else{
+          }else{
             return
           }
-        }}else{
+        }
+      }else {
         arrayPhoneForSort = arrayPhone
       }
+      
     case .favorite:
-      let favaIndex = favoritId.compactMap({ (favId) -> Int? in
+      let favaIndex = favoritId.compactMap( { (favId) -> Int? in
         if favId.value == true {
           return favId.key
         }
@@ -81,27 +78,27 @@ class MobileListInteractor: MobileListInteractorInterface {
     default:
       break
     }
-    if let sortType = sortStatus{
+    
+    if let sortType = sortStatus {
       
-      switch sortType{
+      switch sortType {
       case .priceHighToLow:
-        
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
           data0.price ?? 00 > data1.price ?? 00
         })
+        
       case .priceLowToHigh:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
           data0.price ?? 00 < data1.price ?? 00
         })
+        
       case .rating:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
           data0.rating ?? 00 > data1.rating ?? 00
         })
-        
       }
     }
     return arrayPhoneForSort
-    
   }
   
   func getSegment(request: MobileList.GetMobile.Request) {
@@ -110,14 +107,11 @@ class MobileListInteractor: MobileListInteractorInterface {
     let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
     self.presenter.presentSort(response: respones)
   }
+  
   func getSort(request: MobileList.SortMobileList.RequestMobile) {
     let sortTypeRequese = request.sortingStatus
     sortStatus = sortTypeRequese
     let respones = MobileList.SortMobileList.ResponseMobile(mobile: arrayPhoneSuccess)
     self.presenter.presentSort(response: respones)
   }
-  
-  
-  
-  
 }

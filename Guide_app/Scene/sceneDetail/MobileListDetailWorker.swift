@@ -26,5 +26,4 @@ class MobileListDetailWorker {
       completion($0)
     }
   }
-  
 }

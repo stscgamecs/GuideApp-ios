@@ -20,22 +20,18 @@ class MobileListPresenter: MobileListPresenterInterface {
   
 // MARK: - Presentation logic
   func presentPhone(response: MobileList.GetMobile.Response) {
-    
     let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile)
     viewController.mobileDisplay(viewModel: viewModel)
   }
   
   func presentAddFavorit(response: MobileList.AddFavoritMobile.Response) {
-    
     let viewModelFavorit = MobileList.AddFavoritMobile.ViewModel(checkFavorit: response.checkFavorit)
     viewController.displayAddFavorit(viewModel: viewModelFavorit)
   }
 
   func presentSort(response: MobileList.SortMobileList.ResponseMobile) {
-    
     let viewModelFavorit = MobileList.SortMobileList.ViewModelMobile(mobile: response.mobile)
     viewController.displaySortPhone(viewModel: viewModelFavorit)
-    
   }
   
   

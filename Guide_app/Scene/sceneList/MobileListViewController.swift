@@ -14,16 +14,14 @@ protocol MobileListViewControllerInterface: class {
   func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
 }
 
-class MobileListViewController: UIViewController,MobileListViewControllerInterface {
-  
+class MobileListViewController: UIViewController, MobileListViewControllerInterface {
   var interactor: MobileListInteractorInterface!
   var router: MobileListRouter!
   var modelPhone: Phones = []
   var modelFavoritPhone: [Int: Bool] = [:]
-  var statusFavForDelete : Bool = false
+  var statusFavForDelete: Bool = false
   var typeBar: SegmentStatus = .all
   
-
   @IBOutlet weak var segMentControl: UISegmentedControl!
   @IBOutlet weak var tableViewControl: UITableView!
   
@@ -55,7 +53,6 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     super.viewDidLoad()
     setupCell()
     getPhone(segmentType: .all)
-    
   }
   
   func setupCell() {
@@ -63,19 +60,19 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     let nib = UINib(nibName: "MobileListTableViewCell", bundle: bundle)
     tableViewControl.register(nib, forCellReuseIdentifier: "tableViewPhoneCell")
   }
+  
   @IBAction func btnSort(_ sender: Any) {
-    
     let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler:{ action in
-
+      
       self.getSortImage(sortType: .priceHighToLow)
     }))
     alert.addAction(UIAlertAction(title: "Price high to low", style: .default, handler:{ action in
-
+      
       self.getSortImage(sortType: .priceLowToHigh)
     }))
     alert.addAction(UIAlertAction(title: "Rating", style: .default, handler:{ action in
-
+      
       self.getSortImage(sortType: .rating)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -84,19 +81,18 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
   
   // MARK: - Display logic
   func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
-     
-      self.modelPhone = viewModel.mobile
-      self.tableViewControl.reloadData()
+    self.modelPhone = viewModel.mobile
+    self.tableViewControl.reloadData()
   }
+  
   func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
-
-      self.modelFavoritPhone = viewModel.checkFavorit
-      self.tableViewControl.reloadData()
+    self.modelFavoritPhone = viewModel.checkFavorit
+    self.tableViewControl.reloadData()
   }
+  
   func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile) {
-   
-      self.modelPhone = viewModel.mobile
-      self.tableViewControl.reloadData()
+    self.modelPhone = viewModel.mobile
+    self.tableViewControl.reloadData()
   }
   
   @IBAction func segmentMenu(_ sender: Any) {
@@ -112,52 +108,36 @@ class MobileListViewController: UIViewController,MobileListViewControllerInterfa
     default:
       break
     }
-    
   }
   
   // MARK: - Event handling
-  func getPhone(segmentType: SegmentStatus){
+  func getPhone(segmentType: SegmentStatus) {
     interactor.getSegment(request: MobileList.GetMobile.Request(segmentStatus: segmentType))
   }
   
-  func getSortImage(sortType: SortingStatus){
+  func getSortImage(sortType: SortingStatus) {
     interactor.getSort(request: MobileList.SortMobileList.RequestMobile(sortingStatus: sortType))
   }
-
   
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-////    router.passDataToSomewhereScene(for: segue, sender:sender as Any)
-//    if segue.identifier == "ShowSomewhereScene",
-//      let viewController = segue.destination as? MobileListDetailViewController{
-//      viewController.displayDetail(viewModel: sender as! Mobile)
-//    }
     router.passDataToNextScene(segue: segue, sender: sender)
-    
   }
-  
-//  @IBAction func unwindToGuideViewController(from segue: UIStoryboardSegue) {
-//    print("unwind...")
-////    router.passDataToNextScene()
-//  }
 }
 
 
 extension MobileListViewController:UITableViewDelegate{
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexDescription = modelPhone[indexPath.item]
-    
     router.navigateToSomewhere(sender: indexDescription)
-  //self.performSegue(withIdentifier: "ShowSomewhereScene", sender: indexDescription)
-      
   }
+  
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-      return statusFavForDelete
+    return statusFavForDelete
   }
+  
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
-    
     self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     if editingStyle == .delete {
       self.modelPhone.remove(at: indexPath.row)
@@ -166,14 +146,12 @@ extension MobileListViewController:UITableViewDelegate{
   }
 }
 
-extension MobileListViewController: UITableViewDataSource{
+extension MobileListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return modelPhone.count
-    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     guard let cell = tableViewControl.dequeueReusableCell(withIdentifier: "tableViewPhoneCell") as? MobileListTableViewCell else { return UITableViewCell() }
     
     let selectCell = modelPhone[indexPath.row].id
@@ -186,10 +164,6 @@ extension MobileListViewController: UITableViewDataSource{
     cell.setUi(classPhone: modelPhone[indexPath.row],
                isFavourite: isFavourite,
                isMenuFavorite: typeBar)
-    
     return cell
   }
-  
-  
-  
 }

@@ -17,7 +17,6 @@ enum ApiError: Error {
 }
 
 class MobileListStore: MobileListStoreProtocol {
-  
   func getPhone(_ completion: @escaping (Result<Phones, ApiError>) -> Void) {
     guard let url = URL(string: "https://scb-test-mobile.herokuapp.com/api/mobiles/") else {
       return
@@ -27,30 +26,25 @@ class MobileListStore: MobileListStoreProtocol {
     request.httpMethod = "GET"
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-      
       if let _ = error {
         print("error")
-      } else if let data = data, let response = response as? HTTPURLResponse {
-          DispatchQueue.main.async {
-        if response.statusCode == 200 {
-          
-          do {
+      }
+      else if let data = data, let response = response as? HTTPURLResponse {
+        DispatchQueue.main.async {
+          if response.statusCode == 200 {
+            
+            do {
               let mobileList: Phones = try JSONDecoder().decode(Phones.self, from: data)
               completion(Result.success(mobileList))
-          } catch(let error) {
-            print("parse JSON failed")
-            print(error)
-            completion(Result.failure(ApiError.jsonError))
+            } catch(let error) {
+              print("parse JSON failed")
+              print(error)
+              completion(Result.failure(ApiError.jsonError))
+            }
           }
         }
       }
-      }
-      
     }
     task.resume()
   }
-  
- 
-  
-  
 }

@@ -16,6 +16,7 @@ class MobileListTableViewCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
   }
+  
   @IBOutlet weak var imagePhone: UIImageView!
   @IBOutlet weak var textBrand: UILabel!
   @IBOutlet weak var subText: UILabel!
@@ -27,7 +28,8 @@ class MobileListTableViewCell: UITableViewCell {
   @IBAction func favorite(_ sender: Any) {
     btnFavoriteAction?()
   }
-  func setUi(classPhone: Mobile, isFavourite: Bool ,isMenuFavorite: SegmentStatus){
+  
+  func setUi(classPhone: Mobile, isFavourite: Bool ,isMenuFavorite: SegmentStatus) {
     imagePhone.kf.setImage(with: URL(string: classPhone.thumbImageURL!))
     textBrand.text = classPhone.name
     subText.text = classPhone.phoneDescription
@@ -35,7 +37,7 @@ class MobileListTableViewCell: UITableViewCell {
     rating.text = "\(classPhone.rating ?? 0)"
     favCheck = isFavourite
     
-    if isFavourite{
+    if isFavourite {
       btnFavorite.setImage(UIImage(named: "starSuccess"), for: UIControl.State.normal)
     } else {
       btnFavorite.setImage(UIImage(named: "star"), for: UIControl.State.normal)

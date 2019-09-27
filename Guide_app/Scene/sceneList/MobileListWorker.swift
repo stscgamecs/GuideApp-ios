@@ -13,6 +13,7 @@ protocol MobileListStoreProtocol {
 }
 
 class MobileListWorker {
+  
   var store: MobileListStoreProtocol
   
   init(store: MobileListStoreProtocol) {
@@ -20,9 +21,8 @@ class MobileListWorker {
   }
   
   // MARK: - Business Logic
-  
   func getPhone(_ completion: @escaping (Result<Phones,ApiError>) -> Void) {
-    store.getPhone{
+    store.getPhone {
       completion($0)
     }
   }

@@ -12,40 +12,31 @@ struct MobileListDetail {
   /// This structure represents a use case
   struct GetPhoneDetail {
     /// Data struct sent to Interactor
-    struct Request {
-     
-    }
-    
+    struct Request {}
     /// Data struct sent to Presenter
     struct Response {
       var phoneImages : ImagePhones
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      
       let phoneImages : ImagePhones
       let arrayStringImage: [String]
     }
   }
   
   struct GetPhone {
-     /// Data struct sent to Interactor
-     struct Request {
-     
-     }
-     
-     /// Data struct sent to Presenter
-     struct Response {
-       var phone : Mobile
-     }
-     /// Data struct sent to ViewController
-     struct ViewModel {
+    /// Data struct sent to Interactor
+    struct Request {}
+    /// Data struct sent to Presenter
+    struct Response {
+      var phone : Mobile
+    }
+    /// Data struct sent to ViewController
+    struct ViewModel {
       var price : String
       var rating : String
       var Discription : String
-      
-      
-     }
-   }
+    }
+  }
 }
 

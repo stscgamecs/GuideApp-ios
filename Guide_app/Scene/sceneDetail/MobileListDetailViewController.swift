@@ -15,20 +15,23 @@ protocol MobileListDetailViewControllerInterface: class {
 
 class MobileListDetailViewController: UIViewController, MobileListDetailViewControllerInterface {
   
-  
-  
   var interactor: MobileListDetailInteractorInterface!
   var router: MobileListDetailRouter!
+  var arrayMobileList: [String] = []
+  
+  @IBOutlet weak var descriptionLabel: UILabel!
+  @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var navText: UINavigationItem!
+  @IBOutlet weak var ratingLabel: UILabel!
+  @IBOutlet weak var priceLabel: UILabel!
   
   // MARK: - Object lifecycle
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     configure(viewController: self)
   }
   
   // MARK: - Configuration
-  
   private func configure(viewController: MobileListDetailViewController) {
     let router = MobileListDetailRouter()
     router.viewController = viewController
@@ -45,55 +48,40 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
   }
   
   // MARK: - View lifecycle
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setPhone()
     setPhoneDetailImage()
-    
   }
+  
   var dataMobile : Mobile?
+  
   func displayMobileDetail(viewModel: MobileListDetail.GetPhone.ViewModel) {
-    
     priceLabel.text = viewModel.price
     ratingLabel.text = viewModel.rating
     descriptionLabel.text = viewModel.Discription
   }
+  
   // MARK: - Event handling
-  func setPhone(){
+  func setPhone() {
     let request = MobileListDetail.GetPhone.Request()
     interactor.getDataPhone(request: request)
   }
+  
   func setPhoneDetailImage() {
     let request = MobileListDetail.GetPhoneDetail.Request()
     interactor.getImagePhone(request: request)
-    
-    
-    
   }
   
   // MARK: - Display logic
-  var arrayMobileList: [String] = []
-  @IBOutlet weak var descriptionLabel: UILabel!
-  @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var navText: UINavigationItem!
-  
-  @IBOutlet weak var ratingLabel: UILabel!
-  @IBOutlet weak var priceLabel: UILabel!
-  
-  // NOTE: Display the result from the Presenter
   func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
-    
     arrayMobileList = viewModel.arrayStringImage
     collectionView.reloadData()
-    
   }
-  
-  // MARK: - Router
-  
 }
 
-extension MobileListDetailViewController:UICollectionViewDataSource{
+extension MobileListDetailViewController:UICollectionViewDataSource {
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return arrayMobileList.count
   }
@@ -104,12 +92,6 @@ extension MobileListDetailViewController:UICollectionViewDataSource{
     
     cell.setUiCollectionView(classImage: urlImage)
     
-    
     return cell
   }
-  
-  
-}
-extension MobileListDetailViewController:UICollectionViewDelegate{
-  
 }
