@@ -9,8 +9,10 @@
 import XCTest
 @testable import Guide_app
 class TestMobileListDetailInteractor: XCTestCase {
+  
   var interactorDetail: MobileListDetailInteractor!
   var serviceDetail: MobileListDetailStore!
+  
   override func setUp() {
     interactorDetail = MobileListDetailInteractor()
     serviceDetail = MobileListDetailStore()
@@ -19,12 +21,10 @@ class TestMobileListDetailInteractor: XCTestCase {
   override func tearDown() {
     super.tearDown()
   }
-  //Mock presenter Dretail for test interactorDetail
+  
   class MobileListDetailPresenterSpy: MobileListDetailPresenterInterface {
-    
     var presentImagePhone = false
     var presentPhone = false
-    
     var mobile: Mobile?
     
     func presentImagePhone(response: MobileListDetail.GetPhoneDetail.Response) {
@@ -35,52 +35,69 @@ class TestMobileListDetailInteractor: XCTestCase {
       mobile = response.phone
       presentPhone = true
     }
-    
   }
   
-  //Mock PresenterDetail for test Worker
   class MobileListDetailStoreSpy: MobileListDetailStoreProtocol {
     var checkFailure = false
+    
     func getImageMobile(sent numbers: Int, _ completion: @escaping (Result<ImagePhones, ApiError>) -> Void) {
       if checkFailure == false{
         completion(Result.success([]))
       }
-      else if checkFailure == true{
+      else if checkFailure == true {
         completion(Result.failure(ApiError.networkError))
       }
     }
   }
-  //test Interacter Detail file
-  func testGetImagePhoneAskPresenterToPresenterImagePhone() {
+  
+  func testGetImagePhoneAskPresenterToPresentImagePhone() {
     
-    //given
+    //Given
     let workerDetailSpy = MobileListDetailWorker(store: MobileListDetailStoreSpy())
-    
     interactorDetail.worker = workerDetailSpy
+    
     let model = Mobile(thumbImageURL: "", brand: "", rating: 0.0, name: "", phoneDescription: "", id: 1, price: 0.0)
     interactorDetail.model = model
-    let phone:ImagePhones = [ImageMobile(mobileID: 1, id: 1, url: "ssss")]
+    
     let presenterDetailSpy = MobileListDetailPresenterSpy()
     interactorDetail.presenter = presenterDetailSpy
     
-    
-    //when
+    //When
     let requestDetailSpy = MobileListDetail.GetPhoneDetail.Request()
     interactorDetail.getImagePhone(request: requestDetailSpy)
     
-    let responseDetailSpy = MobileListDetail.GetPhoneDetail.Response(phoneImages: phone)
-    interactorDetail.presenter.presentImagePhone(response: responseDetailSpy)
-    //then
-    
-    XCTAssert(presenterDetailSpy.presentImagePhone)
+    //Then
+    XCTAssert(presenterDetailSpy.presentImagePhone,"Test GetImagePhone() ask Presenter to PresentImagePhone()")
   }
   
-  func testGetImagePhoneFailureSholdAskPresenterToPresenterImagePhone() {
-    // Given
-    let store = MobileListDetailStoreSpy()
-    store.checkFailure = true
+  func testGetImagePhoneCaseFailureSholdAskPresenterToPresenterImagePhone() {
     
-    let workerDetailSpy = MobileListDetailWorker(store: store)
+    //Given
+    let workerDetailSpy = MobileListDetailWorker(store: MobileListDetailStoreSpy())
+    interactorDetail.worker = workerDetailSpy
+    
+    let modelSpy = Mobile(thumbImageURL: nil, brand: nil, rating: 0.0, name: "", phoneDescription: "", id: 1, price: 0.0)
+    interactorDetail.model = modelSpy
+    
+    let presenterDetailSpy = MobileListDetailPresenterSpy()
+    interactorDetail.presenter = presenterDetailSpy
+    
+    //When
+    let requestDetailSpy = MobileListDetail.GetPhoneDetail.Request()
+    interactorDetail.getImagePhone(request: requestDetailSpy)
+    
+    //Then
+    XCTAssert(presenterDetailSpy.presentImagePhone,"Test GetImagePhone() failure shold ask Presenter to PresenterImagePhone()")
+    
+  }
+  
+  func testGetImagePhoneFailureSholdNotAskPresenterToPresenterImagePhone() {
+    
+    //Given
+    let storeSpy = MobileListDetailStoreSpy()
+    storeSpy.checkFailure = true
+    
+    let workerDetailSpy = MobileListDetailWorker(store: storeSpy)
     interactorDetail.worker = workerDetailSpy
     
     let model = Mobile(thumbImageURL: "",
@@ -98,54 +115,41 @@ class TestMobileListDetailInteractor: XCTestCase {
     
     // Then
     let presenterDetailSpy = MobileListDetailPresenterSpy()
-    XCTAssert(presenterDetailSpy.presentImagePhone)
-//    XCTAssert((presenterDetailSpy.mobile?.id != nil))
-    
-    //let phone:ImagePhones = [ImageMobile(mobileID: 1, id: 1, url: "ssss")]
-    //interactorDetail.presenter = presenterDetailSpy
-    
-    //let responseDetailSpy = MobileListDetail.GetPhoneDetail.Response(phoneImages: phone)
-    //interactorDetail.presenter.presentImagePhone(response: responseDetailSpy)
+    XCTAssertFalse(presenterDetailSpy.presentImagePhone,"Test GetImagePhone() failure not shold ask Presenter To PresenterImagePhone()")
   }
   
   func testGetDataPhoneAskPresenterToPresentPhone() {
     
     //given
-    
     let presenterDetailSpy = MobileListDetailPresenterSpy()
     interactorDetail.presenter = presenterDetailSpy
     
-    let arrayPhone = Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 2)
-    interactorDetail.model = arrayPhone
+    let MobileSpy = Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 2)
+    interactorDetail.model = MobileSpy
+    
     //when
     let requestDetailSpy = MobileListDetail.GetPhone.Request()
     interactorDetail.getDataPhone(request: requestDetailSpy)
     
-    let responseDetailSpy = MobileListDetail.GetPhone.Response(phone: arrayPhone)
-    interactorDetail.presenter.presentPhone(response: responseDetailSpy)
     //then
     
-    XCTAssert(presenterDetailSpy.presentPhone)
-    
+    XCTAssert(presenterDetailSpy.presentPhone,"Test GetDataPhone() ask Presenter to PresentPhone()")
   }
+  
   func testGetDataPhoneFailureSholdAskPresenterToPresentPhone() {
     
-    //given
-    
+    //Given
     let presenterDetailSpy = MobileListDetailPresenterSpy()
     interactorDetail.presenter = presenterDetailSpy
     
-    let arrayPhone = Mobile(thumbImageURL: nil, brand: nil, rating: nil, name: nil, phoneDescription: nil, id: nil, price: nil)
     interactorDetail.model = nil
-    //when
+    //When
     let requestDetailSpy = MobileListDetail.GetPhone.Request()
     interactorDetail.getDataPhone(request: requestDetailSpy)
     
-    let responseDetailSpy = MobileListDetail.GetPhone.Response(phone: arrayPhone)
-    interactorDetail.presenter.presentPhone(response: responseDetailSpy)
-    //then
+    //Then
     
-    XCTAssert(presenterDetailSpy.presentPhone)
+    XCTAssertFalse(presenterDetailSpy.presentPhone,"Test GetDataPhone() failure not shold ask Presenter to PresentPhone()")
     
   }
 }

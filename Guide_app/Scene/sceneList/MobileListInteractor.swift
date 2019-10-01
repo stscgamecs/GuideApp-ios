@@ -50,23 +50,18 @@ class MobileListInteractor: MobileListInteractorInterface {
       if sortStatus == .none {
         worker?.getPhone { [weak self ] in
           if case let Result.success(data) = $0 {
-            switch Result<Phones, ApiError> .success(data) {
-            case .success(let data):
+            let data = data
               self?.arrayPhone = data
               let respones = MobileList.GetMobile.Response(mobile: data)
               self?.presenter.presentPhone(response: respones)
-              
-            case .failure(_):
-              // ?????????
-              break
-            }
+        
           } else {
-            // ?????????
+            print(ApiError.networkError)
           }
         }
-      }else {
-        arrayPhoneForSort = arrayPhone
       }
+        arrayPhoneForSort = arrayPhone
+      
       
     case .favorite:
       let favaIndex = favoritId.compactMap( { (favId) -> Int? in
@@ -86,18 +81,20 @@ class MobileListInteractor: MobileListInteractorInterface {
       switch sortType {
       case .priceHighToLow:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 0.0 > data1.price ?? 0.0
+          data0.price! > data1.price!
         })
         
       case .priceLowToHigh:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 0.0 < data1.price ?? 0.0
+          data0.price! < data1.price!
         })
         
       case .rating:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.rating ?? 0.0 > data1.rating ?? 0.0
+          data0.rating! > data1.rating!
         })
+     
+        
       }
     }
     return arrayPhoneForSort

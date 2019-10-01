@@ -28,7 +28,6 @@ class TestMobileListInteractor: XCTestCase {
     super.tearDown()
   }
   
-  //Mock Presenter for test interactor
   class MobileListPresenterSpy: MobileListPresenterInterface {
     
     var presentPhone = false
@@ -44,14 +43,14 @@ class TestMobileListInteractor: XCTestCase {
     }
     
     func presentSort(response: MobileList.SortMobileList.ResponseMobile) {
-      // Mobile ????
       presentSort = true
+      
     }
   }
   
-  //Mock Presenter for test Worker
   class MobileListWorkerSpy: MobileListStoreProtocol {
     var checkStateFailure:Bool = false
+    
     func getPhone(_ completion: @escaping (Result<Phones, ApiError>) -> Void) {
       if checkStateFailure == false{
         completion(Result.success([]))
@@ -61,12 +60,12 @@ class TestMobileListInteractor: XCTestCase {
     }
   }
   
-  //test Interacter file
-  func testGetPhoneAskPresenterToPresenterAddFavorit() {
-    //given
+  func testGetPhoneNotAskPresenPhoneButAskPresenterAddFavoritIsFavorite() {
     
+    //Given
     let presenterSpy = MobileListPresenterSpy()
     interactor.presenter = presenterSpy
+    
     let idSpy:Int = 1
     let indexSpy:[Int:Bool] = [1:true,2:true,3:false]
     interactor.favoritId = indexSpy
@@ -76,166 +75,188 @@ class TestMobileListInteractor: XCTestCase {
     interactor.getPhone(request: requestSpy)
     
     //then
-    XCTAssert(presenterSpy.presentAddFav)
+    XCTAssertFalse(presenterSpy.presentPhone,"Test getPhone() not Ask PresenPhone()")
+    XCTAssert(presenterSpy.presentAddFav,"Test ask PresenterAddFavorite() is Favorite")
     
   }
-  func testGetPhoneWithFailureShouldAskPresenterToPresenterAddFavorit () {
+  
+  func testGetPhoneNotAskPresenPhoneButPresenterAddFavoritisNotFavorite () {
     
-    
-    //given
+    //Given
     let presenterSpy = MobileListPresenterSpy()
     interactor.presenter = presenterSpy
-    let idSpy:Int = 1
-    let indexSpy:[Int:Bool] = [1:false,2:false,3:false]
+    
+    let idSpy: Int = 1
+    let indexSpy: [Int:Bool] = [ 1 : false, 2 : false, 3 : false ]
     interactor.favoritId = indexSpy
     
     //when
     let requestSpy = MobileList.AddFavoritMobile.Request(indexCell: idSpy)
     interactor.getPhone(request: requestSpy)
-    
     //then
-    XCTAssert(presenterSpy.presentAddFav)
-    
+    XCTAssertFalse(presenterSpy.presentPhone,"Test getPhone() not Ask PresenPhone()")
+    XCTAssert(presenterSpy.presentAddFav,"Test ask PresenterAddFavorite() is not Favorite")
   }
   
   func testGetSegmentAskPresenterToPresentSortSegmentStatusAll() {
-    //given
-    let worker = MobileListWorker(store: MobileListWorkerSpy())
-    interactor.worker = worker
-    
-    let presenterSpy = MobileListPresenterSpy()
-    interactor.presenter = presenterSpy
-    
-    //when
-    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .all)
-    interactor.getSegment(request: requestSpy)
-    
-    //then
-    XCTAssert(presenterSpy.presentSort)
-    
-  }
-  
-  func testGetSegmentWithFailureSholdAskPresenterToPresentSortSegmentStatusAll() {
-    //given
-    let failure = MobileListWorkerSpy()
-    failure.checkStateFailure = true
-    let workerSpy = MobileListWorker(store: failure)
-    interactor.worker = workerSpy
-    
-    let presenterSpy = MobileListPresenterSpy()
-    interactor.presenter = presenterSpy
-    
-    let sortStatusSpy: SortingStatus = .priceHighToLow
-    interactor.sortStatus = sortStatusSpy
-    
-    //when
-    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .all)
-    interactor.getSegment(request: requestSpy)
-    
-    //then
-    XCTAssert(presenterSpy.presentSort)
-  }
-  
-  
-  func testGetSegmentAskPresenterToPresentSortSegmentStatusFavorite() {
-    //given
-    let worker = MobileListWorker(store: MobileListWorkerSpy())
-    interactor.worker = worker
-    
-    let presenterSpy = MobileListPresenterSpy()
-    interactor.presenter = presenterSpy
-    let favIndex:[Int:Bool] = [1:true,2:true,3:true]
-    interactor.favoritId = favIndex
-    let favPhoneSpy:[Mobile] = [Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 1)]
-    interactor.arrayPhone = favPhoneSpy
-    //when
-    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .favorite)
-    interactor.getSegment(request: requestSpy)
-    
-    //then
-    XCTAssert(presenterSpy.presentSort)
-  }
-  
-  func testGetSegmentAskPresenterToPresentSortSegmentStatusFavoriteFailure() {
-    //given
-    let worker = MobileListWorker(store: MobileListWorkerSpy())
-    interactor.worker = worker
-    
-    let presenterSpy = MobileListPresenterSpy()
-    interactor.presenter = presenterSpy
-    let favIndex:[Int:Bool] = [1:false,2:true,3:true]
-    interactor.favoritId = favIndex
-    let favPhoneSpy:[Mobile] = [Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 1)]
-    interactor.arrayPhone = favPhoneSpy
-    //when
-    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .favorite)
-    interactor.getSegment(request: requestSpy)
-    
-    //then
-    XCTAssert(presenterSpy.presentSort)
-  }
-  
-  
-  func testGetSortAskPresenterToPresentSortsortingStatusPriceHighToLow (){
-    //given
+    //Given
     let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
     interactor.worker = workerSpy
     
     let presenterSpy = MobileListPresenterSpy()
     interactor.presenter = presenterSpy
     
-    let arrayPhoneForSortSpy:Phones = [
+    //When
+    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .all)
+    interactor.getSegment(request: requestSpy)
+    
+    //Then
+    XCTAssert(presenterSpy.presentSort,"Test GetSegment() ask Presenter to PresentSort() SegmentStatus .all")
+  }
+  
+  func testGetSegmentAskPresenterToPresentSortSegmentStatusAllFailure() {
+    
+    //Given
+    let storeSpy = MobileListWorkerSpy()
+    storeSpy.checkStateFailure = true
+    
+    let workerSpy = MobileListWorker(store: storeSpy)
+    interactor.worker = workerSpy
+    
+    let presenterSpy = MobileListPresenterSpy()
+    interactor.presenter = presenterSpy
+    
+    //When
+    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .all)
+    interactor.getSegment(request: requestSpy)
+    
+    //then
+    XCTAssert(presenterSpy.presentSort,"Test GetSegment ask presenter to PresentSort SegmentStatus .all is failure")
+    
+  }
+  
+  func testGetSegmentAskPresenterToPresentSortSegmentStatusFavoriteisFavorite() {
+    
+    //Given
+    let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
+    interactor.worker = workerSpy
+    
+    let presenterSpy = MobileListPresenterSpy()
+    interactor.presenter = presenterSpy
+    
+    let favIndex: [Int : Bool] = [1 : true, 2 : true, 3 : true]
+    interactor.favoritId = favIndex
+    
+    let favPhoneSpy: [Mobile] = [Mobile(thumbImageURL: "",
+                                        brand: "",
+                                        rating: 1,
+                                        name: "",
+                                        phoneDescription: "",
+                                        id: 1,
+                                        price: 1)]
+    interactor.arrayPhone = favPhoneSpy
+    
+    //When
+    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .favorite)
+    interactor.getSegment(request: requestSpy)
+    
+    //Then
+    XCTAssert(presenterSpy.presentSort,"Test GetSegment() ask Presenter to PresentSort() SegmentStatus .favorite is favorite")
+  }
+  
+  func testGetSegmentAskPresenterToPresentSortSegmentStatusFavoriteisNotFavorite() {
+    
+    //Given
+    let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
+    interactor.worker = workerSpy
+    
+    let presenterSpy = MobileListPresenterSpy()
+    interactor.presenter = presenterSpy
+    
+    let favIndexSpy: [Int:Bool] = [1:false,2:true,3:true]
+    interactor.favoritId = favIndexSpy
+    
+    let favPhoneSpy: [Mobile] = [Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 1)]
+    interactor.arrayPhone = favPhoneSpy
+    
+    //When
+    let requestSpy = MobileList.GetMobile.Request(segmentStatus: .favorite)
+    interactor.getSegment(request: requestSpy)
+    
+    //Then
+    XCTAssert(presenterSpy.presentSort,"Test GetSegment() ask Presenter to PresentSort() SegmentStatus .favorite is not favorite")
+  }
+  
+  func testGetSortAskPresenterToPresentSortsortingStatusPriceHighToLow() {
+    
+    //Given
+    let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
+    interactor.worker = workerSpy
+    
+    let presenterSpy = MobileListPresenterSpy()
+    interactor.presenter = presenterSpy
+    
+    let arrayPhoneForSortSpy: Phones = [
       Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 2.0),
       Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 3.0),
       Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 1.0)
     ]
     interactor.arrayPhone = arrayPhoneForSortSpy
     
-    //when
+    //When
     let requestSpy = MobileList.SortMobileList.RequestMobile(sortingStatus: .priceHighToLow )
     interactor.getSort(request: requestSpy)
-    //interactor.sortStatus = .priceHighToLow
     
-    //then
-    XCTAssert(presenterSpy.presentSort)
-    //XCTAssert(presenterSpy.???, [4.0, 3.0, 2.0] , "????????")
+    //Then
+    XCTAssert(presenterSpy.presentSort,"Test GetSort() ask Presenter to PresentSort() sortingStatus is .priceHighToLow")
   }
   
-  func testGetSortAskPresenterToPresentSortsortingStatusPriceLowToHigh (){
-    //given
+  func testGetSortAskPresenterToPresentSortsortingStatusPriceLowToHigh() {
+    
+    //Given
     let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
     interactor.worker = workerSpy
-    var sortSpy = interactor.sortStatus
-    sortSpy = .priceLowToHigh
+    
     let presenterSpy = MobileListPresenterSpy()
     interactor.presenter = presenterSpy
-    let arrayPhoneForSortSpy:Phones = [Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 4.0),Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 5.0)]
+    
+    let arrayPhoneForSortSpy: Phones = [
+      Mobile(thumbImageURL: "", brand: "", rating: 1, name: "", phoneDescription: "", id: 1, price: 4.0),
+      Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 5.0),
+      Mobile(thumbImageURL: "", brand: "", rating: 3, name: "", phoneDescription: "", id: 3, price: 2.0)]
     interactor.arrayPhone = arrayPhoneForSortSpy
-    //when
-    let requestSpy = MobileList.SortMobileList.RequestMobile(sortingStatus: sortSpy!)
+    
+    //When
+    let requestSpy = MobileList.SortMobileList.RequestMobile(sortingStatus: .priceLowToHigh)
     interactor.getSort(request: requestSpy)
     
-    //then
-    XCTAssert(presenterSpy.presentSort, "?????")
+    //Then
+    XCTAssert(presenterSpy.presentSort, "Test GetSort() ask Presenter to PresentSort() sortingStatus is .priceLowToHigh ")
   }
   
-  func testGetSortAskPresenterToPresentSortsortingStatusRating (){
-    //given
+  func testGetSortAskPresenterToPresentSortsortingStatusRating() {
+    
+    //Given
     let workerSpy = MobileListWorker(store: MobileListWorkerSpy())
     interactor.worker = workerSpy
+    
     var sortSpy = interactor.sortStatus
     sortSpy = .rating
+    
     let presenterSpy = MobileListPresenterSpy()
     interactor.presenter = presenterSpy
     
-    let arrayPhoneForSortSpy:Phones = [Mobile(thumbImageURL: "", brand: "", rating: 5, name: "", phoneDescription: "", id: 1, price: 4.0),Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 5.0)]
+    let arrayPhoneForSortSpy: Phones = [
+      Mobile(thumbImageURL: "", brand: "", rating: 5, name: "", phoneDescription: "", id: 1, price: 4.0),
+      Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 2, price: 5.0),
+      Mobile(thumbImageURL: "", brand: "", rating: 2, name: "", phoneDescription: "", id: 3, price: 3.0)]
     interactor.arrayPhone = arrayPhoneForSortSpy
     
-    //when
+    //When
     let requestSpy = MobileList.SortMobileList.RequestMobile(sortingStatus: sortSpy!)
     interactor.getSort(request: requestSpy)
     
-    //then
+    //Then
     XCTAssert(presenterSpy.presentSort,"getSort() by rating should ask presenter to presentSort()")
   }
 }

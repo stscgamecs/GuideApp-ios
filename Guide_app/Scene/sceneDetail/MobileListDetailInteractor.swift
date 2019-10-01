@@ -23,22 +23,17 @@ class MobileListDetailInteractor: MobileListDetailInteractorInterface {
   
   // MARK: - Business logic
   func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request) {
-
+    
     worker?.getMobile(sent: (model?.id)!) {  [weak self ] in
       if case let Result.success(data) = $0 {
-        switch Result<ImagePhones, ApiError>.success(data){
-          
-        case .success(let dataImage):
-          self?.modelImage = dataImage
-          let respones = MobileListDetail.GetPhoneDetail.Response(phoneImages: dataImage)
-          self?.presenter.presentImagePhone(response: respones)
-        case .failure(let error):
-          print(error.localizedDescription)
-
-        }
+        let dataImage = data
+        self?.modelImage = dataImage
+        let respones = MobileListDetail.GetPhoneDetail.Response(phoneImages: dataImage)
+        self?.presenter.presentImagePhone(response: respones)
       }
       else {
-        print($0)
+        print(ApiError.networkError)
+        
       }
     }
     

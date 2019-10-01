@@ -19,8 +19,8 @@ class MobileListDetailPresenter: MobileListDetailPresenterInterface {
   
   // MARK: - Presentation logic
   func presentPhone(response: MobileListDetail.GetPhone.Response) {
-    let price = "$\(response.phone.price ?? 0)"
-    let rating = "\(response.phone.rating ?? 0)"
+    let price = "$\(response.phone.price!)"
+    let rating = "\(response.phone.rating!)"
     let discription = response.phone.phoneDescription
     let viewModel = MobileListDetail.GetPhone.ViewModel(price: price, rating: rating, Discription: discription!)
     viewController.displayMobileDetail(viewModel: viewModel)

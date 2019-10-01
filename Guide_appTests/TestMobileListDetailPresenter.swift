@@ -16,15 +16,15 @@ class TestMobileListDetailPresenter: XCTestCase {
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+      super.tearDown()
     }
-  //Mock ViewController Dretail for test presenter
+  
   class MobileListDetailControllerSpy: MobileListDetailViewControllerInterface {
     
     var displayMobileImage = false
     var displayMobileDetail = false
-    
-    var ImagePhone: ImagePhones = [ImageMobile(mobileID: 1, id: 1, url: "https://")]
+    var checkUrl = false
+   
     var modelPhone: Mobile = Mobile(thumbImageURL: "http", brand: "aaa", rating: 4.0, name: "bbb", phoneDescription: "erqweq", id: 1, price: 200.0)
     
     func displayMobileImage(viewModel: MobileListDetail.GetPhoneDetail.ViewModel) {
@@ -36,31 +36,52 @@ class TestMobileListDetailPresenter: XCTestCase {
     }
   }
   
-  //test presenterDetail file
-  func testPresentPhoneAskViewControllerToDisPlayMobileDetail(){
+  func testPresentPhoneAskViewControllerToDisPlayMobileDetail() {
     
-    //given
-    
+    //Given
     let viewControllerDetailSpy = MobileListDetailControllerSpy()
     presenterDetail.viewController = viewControllerDetailSpy
-    //when
+
+    presenterDetail.viewController.displayMobileDetail(viewModel: MobileListDetail.GetPhone.ViewModel(price: "\(1.0)", rating: "\(1.0)", Discription: "Discription"))
+  
+    //When
     let responseDetailSpy = MobileListDetail.GetPhone.Response(phone: viewControllerDetailSpy.modelPhone)
     presenterDetail.presentPhone(response: responseDetailSpy)
-    //then
-    XCTAssert(viewControllerDetailSpy.displayMobileDetail)
     
+    //Then
+    XCTAssert(viewControllerDetailSpy.displayMobileDetail,"Test PresentPhone() ask ViewController to DisPlayMobileDetail()")
   }
   
-  func testPresentImagePhoneAskViewControllerToDisplayMobileImage() {
-    //given
+  
+  func testPresentImagePhoneAskViewControllerToDisplayMobileImageAtFormatUrl() {
     
+    //Given
+    let ImagePhoneSpy: ImagePhones = [ImageMobile(mobileID: 1, id: 1, url: "www")]
     let viewControllerDetailSpy = MobileListDetailControllerSpy()
+    
     presenterDetail.viewController = viewControllerDetailSpy
-    //when
-    let responseDetailSpy = MobileListDetail.GetPhoneDetail.Response(phoneImages: viewControllerDetailSpy.ImagePhone)
+    
+    //When
+    let responseDetailSpy = MobileListDetail.GetPhoneDetail.Response(phoneImages: ImagePhoneSpy)
     presenterDetail.presentImagePhone(response: responseDetailSpy)
+    
+    //Then
+    XCTAssert(viewControllerDetailSpy.displayMobileImage,"Test PresentImagePhone() ask ViewController to DisplayMobileImage() at format Url")
+  }
+  func testPresentImagePhoneAskViewControllerToDisplayMobileImageAtNotFormatUrl() {
+    
+    //Given
+    let ImagePhoneSpy: ImagePhones = [ImageMobile(mobileID: 1, id: 1, url: "http://")]
+    let viewControllerDetailSpy = MobileListDetailControllerSpy()
+    
+    presenterDetail.viewController = viewControllerDetailSpy
+    
+    //When
+    let responseDetailSpy = MobileListDetail.GetPhoneDetail.Response(phoneImages: ImagePhoneSpy)
+    presenterDetail.presentImagePhone(response: responseDetailSpy)
+    
     //then
-    XCTAssert(viewControllerDetailSpy.displayMobileImage)
+    XCTAssert(viewControllerDetailSpy.displayMobileImage,"Test PresentImagePhone() ask ViewController to DisplayMobileImage() at not format Url")
   }
 
    

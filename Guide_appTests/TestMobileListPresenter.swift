@@ -10,6 +10,7 @@ import XCTest
 @testable import Guide_app
 
 class TestMobileListPresenter: XCTestCase {
+  
   var presenter: MobileListPresenter!
     override func setUp() {
         presenter = MobileListPresenter()
@@ -18,12 +19,16 @@ class TestMobileListPresenter: XCTestCase {
     override func tearDown() {
             super.tearDown()
     }
-  //Mock ViewController for test presenter
+ 
   class MobileListControllerSpy: MobileListViewControllerInterface{
     
-     let arrayPhone: Phones = [Mobile(thumbImageURL: "aaaa", brand: "sdsds", rating: 1.1, name: "bbb", phoneDescription: "I am Iron man", id: 1, price: 2.0),Mobile(thumbImageURL: "bbb", brand: "sdsds", rating: 1.1, name: "bbb", phoneDescription: "I am Iron man", id: 1, price: 2.0)]
+     let arrayPhone: Phones = [
+      Mobile(thumbImageURL: "aaaa", brand: "sdsds", rating: 1.1, name: "bbb", phoneDescription: "I am Iron man", id: 1, price: 2.0),
+      Mobile(thumbImageURL: "bbb", brand: "sdsds", rating: 1.1, name: "bbb", phoneDescription: "I am Iron man", id: 1, price: 2.0),
+      Mobile(thumbImageURL: "bbb", brand: "sdsds", rating: 1.1, name: "bbb", phoneDescription: "I am Iron man", id: 1, price: 2.0)]
 
-     let indexSpy:[Int : Bool] = [1:true,2:false,4:true,3:true]
+    let indexSpy:[Int : Bool] = [1:true,2:false,4:true,3:true]
+    
     var displayMobile = false
     var displayAddFavorit = false
     var displaySortPhone = false
@@ -41,40 +46,47 @@ class TestMobileListPresenter: XCTestCase {
     }
     
   }
-  //test presenter
+
   func testPresentPhoneAskViewControllerToMobileDisPlay() {
-    //given
+    
+    //Given
     let viewControllerSpy = MobileListControllerSpy()
     presenter.viewController = viewControllerSpy
-    //when
+    
+    //When
     let responseSpy = MobileList.GetMobile.Response(mobile: viewControllerSpy.arrayPhone)
     presenter.presentPhone(response: responseSpy)
-    //then
-    XCTAssert(viewControllerSpy.displayMobile)
+    
+    //Then
+    XCTAssert(viewControllerSpy.displayMobile,"Test PresentPhone() ask ViewController to MobileDisPlay()")
   }
   
   func testPresentAddFavoriteAskViewControllerTodisplayAddFavorit() {
-    //given
+    
+    //Given
     let viewControllerSpy = MobileListControllerSpy()
     presenter.viewController = viewControllerSpy
-    //when
+    
+    //When
     let response = MobileList.AddFavoritMobile.Response(checkFavorit: viewControllerSpy.indexSpy)
     presenter.presentAddFavorite(response: response)
-    //then
-    XCTAssert(viewControllerSpy.displayAddFavorit)
     
+    //Then
+    XCTAssert(viewControllerSpy.displayAddFavorit,"Test PresentAddFavorite() ask ViewController to displayAddFavorit()")
   }
   
   func testPresentSortAskViewControllerTodisplaySortPhone() {
     
-    //given
+    //Given
     let viewControllerSpy = MobileListControllerSpy()
     presenter.viewController = viewControllerSpy
-    //when
+    
+    //When
     let response = MobileList.SortMobileList.ResponseMobile(mobile: viewControllerSpy.arrayPhone)
     presenter.presentSort(response: response)
-    //then
-    XCTAssert(viewControllerSpy.displaySortPhone)
+    
+    //Then
+    XCTAssert(viewControllerSpy.displaySortPhone,"Test PresentSort() ask ViewController to displaySortPhone()")
     
   }
 
