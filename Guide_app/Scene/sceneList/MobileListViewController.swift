@@ -9,8 +9,8 @@
 import UIKit
 
 protocol MobileListViewControllerInterface: class {
-  func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel)
-  func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel)
+  func displayMobile(viewModel: MobileList.GetMobile.ViewModel)
+  func displayAddFavorite(viewModel: MobileList.AddFavoritMobile.ViewModel)
   func displaySortPhone(viewModel: MobileList.SortMobileList.ViewModelMobile)
 }
 
@@ -80,12 +80,12 @@ class MobileListViewController: UIViewController, MobileListViewControllerInterf
   }
   
   // MARK: - Display logic
-  func mobileDisplay(viewModel: MobileList.GetMobile.ViewModel) {
+  func displayMobile(viewModel: MobileList.GetMobile.ViewModel) {
     self.modelPhone = viewModel.mobile
     self.tableViewControl.reloadData()
   }
   
-  func displayAddFavorit(viewModel: MobileList.AddFavoritMobile.ViewModel) {
+  func displayAddFavorite(viewModel: MobileList.AddFavoritMobile.ViewModel) {
     self.modelFavoritPhone = viewModel.checkFavorit
     self.tableViewControl.reloadData()
   }
@@ -138,7 +138,7 @@ extension MobileListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let selectCell = modelPhone[indexPath.row].id
-    self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
+    self.interactor.getPhone(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     if editingStyle == .delete {
       self.modelPhone.remove(at: indexPath.row)
       self.tableViewControl.deleteRows(at:[indexPath], with: .fade)
@@ -156,7 +156,7 @@ extension MobileListViewController: UITableViewDataSource {
     
     let selectCell = modelPhone[indexPath.row].id
     cell.btnFavoriteAction = {
-      self.interactor.getFavorit(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
+      self.interactor.getPhone(request: MobileList.AddFavoritMobile.Request(indexCell:selectCell!))
     }
     
     let phone = modelPhone[indexPath.row]

@@ -54,7 +54,7 @@ class MobileListDetailViewController: UIViewController, MobileListDetailViewCont
     setPhoneDetailImage()
   }
   
-  var dataMobile : Mobile?
+  var dataMobile : MobileListDetail.GetPhone.Request!
   
   func displayMobileDetail(viewModel: MobileListDetail.GetPhone.ViewModel) {
     priceLabel.text = viewModel.price

@@ -31,7 +31,7 @@ struct MobileList {
     
     /// Data struct sent to Presenter
     struct Response {
-      let mobile:Phones
+      let mobile: Phones
     }
     
     /// Data struct sent to ViewController

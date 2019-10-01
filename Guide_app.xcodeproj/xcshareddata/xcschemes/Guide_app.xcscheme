@@ -26,7 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -54,6 +55,16 @@
                BlueprintIdentifier = "441F96B2232F8E6600B87C56"
                BuildableName = "Guide_appUITests.xctest"
                BlueprintName = "Guide_appUITests"
+               ReferencedContainer = "container:Guide_app.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "446F6FFE233FB633001AD5B2"
+               BuildableName = "Guide_appTestsInteractorDetail.xctest"
+               BlueprintName = "Guide_appTestsInteractorDetail"
                ReferencedContainer = "container:Guide_app.xcodeproj">
             </BuildableReference>
          </TestableReference>

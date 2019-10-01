@@ -26,7 +26,7 @@ struct MobileListDetail {
   
   struct GetPhone {
     /// Data struct sent to Interactor
-    struct Request {}
+    struct Request { }
     /// Data struct sent to Presenter
     struct Response {
       var phone : Mobile

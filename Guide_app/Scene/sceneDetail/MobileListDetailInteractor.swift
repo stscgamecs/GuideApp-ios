@@ -16,30 +16,41 @@ protocol MobileListDetailInteractorInterface {
 
 class MobileListDetailInteractor: MobileListDetailInteractorInterface {
   
-  var  model: Mobile?
+  var model: Mobile?
   var presenter: MobileListDetailPresenterInterface!
   var worker: MobileListDetailWorker?
-  var modelImage: ImagePhones = []
+  var modelImage: ImagePhones? = []
   
   // MARK: - Business logic
   func getImagePhone(request: MobileListDetail.GetPhoneDetail.Request) {
+
     worker?.getMobile(sent: (model?.id)!) {  [weak self ] in
       if case let Result.success(data) = $0 {
         switch Result<ImagePhones, ApiError>.success(data){
+          
         case .success(let dataImage):
           self?.modelImage = dataImage
           let respones = MobileListDetail.GetPhoneDetail.Response(phoneImages: dataImage)
           self?.presenter.presentImagePhone(response: respones)
-        case .failure(_): break
+        case .failure(let error):
+          print(error.localizedDescription)
+
         }
       }
       else {
-        return
+        print($0)
       }
     }
+    
   }
+  
   func getDataPhone(request: MobileListDetail.GetPhone.Request) {
-    let respones = MobileListDetail.GetPhone.Response(phone: model!)
+    
+    guard let modelPhone = model else{
+      return
+    }
+    
+    let respones = MobileListDetail.GetPhone.Response(phone: modelPhone)
     self.presenter.presentPhone(response: respones)
   }
 }

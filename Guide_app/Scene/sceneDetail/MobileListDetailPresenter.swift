@@ -9,12 +9,12 @@
 import UIKit
 
 protocol MobileListDetailPresenterInterface {
-  func presentImagePhone(response: MobileListDetail.GetPhoneDetail.Response)
   func presentPhone(response: MobileListDetail.GetPhone.Response)
+  func presentImagePhone(response: MobileListDetail.GetPhoneDetail.Response)
+  
 }
 
 class MobileListDetailPresenter: MobileListDetailPresenterInterface {
-  
   weak var viewController: MobileListDetailViewControllerInterface!
   
   // MARK: - Presentation logic

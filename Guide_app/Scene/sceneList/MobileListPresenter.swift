@@ -10,7 +10,7 @@ import UIKit
 
 protocol MobileListPresenterInterface {
   func presentPhone(response: MobileList.GetMobile.Response)
-  func presentAddFavorit(response: MobileList.AddFavoritMobile.Response)
+  func presentAddFavorite(response: MobileList.AddFavoritMobile.Response)
   func presentSort(response: MobileList.SortMobileList.ResponseMobile)
 }
 
@@ -21,12 +21,12 @@ class MobileListPresenter: MobileListPresenterInterface {
 // MARK: - Presentation logic
   func presentPhone(response: MobileList.GetMobile.Response) {
     let viewModel = MobileList.GetMobile.ViewModel(mobile: response.mobile)
-    viewController.mobileDisplay(viewModel: viewModel)
+    viewController.displayMobile(viewModel: viewModel)
   }
   
-  func presentAddFavorit(response: MobileList.AddFavoritMobile.Response) {
-    let viewModelFavorit = MobileList.AddFavoritMobile.ViewModel(checkFavorit: response.checkFavorit)
-    viewController.displayAddFavorit(viewModel: viewModelFavorit)
+  func presentAddFavorite(response: MobileList.AddFavoritMobile.Response) {
+    let viewModelFavorite = MobileList.AddFavoritMobile.ViewModel(checkFavorit: response.checkFavorit)
+    viewController.displayAddFavorite(viewModel: viewModelFavorite)
   }
 
   func presentSort(response: MobileList.SortMobileList.ResponseMobile) {

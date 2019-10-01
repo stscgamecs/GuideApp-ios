@@ -441,23 +441,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4D74159B-FE51-45D7-8388-DD73615D71D7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
-            timestampString = "590842804.8764859"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getImagePhone(request:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8CD18EE4-C41B-4A7E-8E75-1C86A45414AD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -616,7 +599,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "mobileDisplay(viewModel:)"
+            landmarkName = "displayMobile(viewModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -633,38 +616,6 @@
             startingLineNumber = "20"
             endingLineNumber = "20"
             landmarkName = "setUiCollectionView(classImage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B9B2EB58-7253-413D-B67F-9B45D8075840"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "getImagePhone(request:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15E8BE0F-AAC5-437A-A01A-12C07B01D466"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getImagePhone(request:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -726,10 +677,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "getImageMobile(sent:_:)"
-            landmarkType = "7">
+            startingLineNumber = "45"
+            endingLineNumber = "45">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -742,10 +691,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "getImageMobile(sent:_:)"
-            landmarkType = "7">
+            startingLineNumber = "45"
+            endingLineNumber = "45">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -896,8 +843,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "getImagePhone(request:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -926,8 +873,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108">
+            startingLineNumber = "98"
+            endingLineNumber = "98">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -972,8 +919,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "getDataPhone(request:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1004,8 +951,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109">
+            startingLineNumber = "98"
+            endingLineNumber = "98">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1018,8 +965,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104">
+            startingLineNumber = "98"
+            endingLineNumber = "98">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1032,8 +979,8 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103">
+            startingLineNumber = "98"
+            endingLineNumber = "98">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1046,8 +993,611 @@
             filePath = "Guide_app/Scene/sceneDetail/MobileListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105">
+            startingLineNumber = "98"
+            endingLineNumber = "98">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "Guide_app_appTests"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - e9e74c2314316470"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.__allocating_init(invocation: Swift.Optional&lt;__C.NSInvocation&gt;) -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - 1b63f297de0c6d99"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.init(invocation: Swift.Optional&lt;__C.NSInvocation&gt;) -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - b9c54ee07b6d5331"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.__allocating_init(selector: ObjectiveC.Selector) -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - 3423c92c8ee8d379"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.init(selector: ObjectiveC.Selector) -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - 11eba140f3f36c77"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.__allocating_init() -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - 4ea128a6a6a8a8af"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.init() -&gt; Guide_appTests.Guide_app_appTests"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "497F2A41-32FE-4BC6-B6A1-7F73D722C680 - 4ee32d7672401c12"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_appTests.Guide_app_appTests.__deallocating_deinit"
+                  moduleName = "Guide_appTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_appTests/Guide_appTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FC1F3FC-F843-405A-9021-6234F51316CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getImagePhone(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1FC1F3FC-F843-405A-9021-6234F51316CA - 6ef015eb4daccf51"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_app.MobileListDetailInteractor.getImagePhone(request: Guide_app.MobileListDetail.GetPhoneDetail.Request) -&gt; ()"
+                  moduleName = "Guide_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "1FC1F3FC-F843-405A-9021-6234F51316CA - bb933a79b2c5515d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Guide_app.ImageMobile&gt;, Guide_app.ApiError&gt;) -&gt; () in Guide_app.MobileListDetailInteractor.getImagePhone(request: Guide_app.MobileListDetail.GetPhoneDetail.Request) -&gt; ()"
+                  moduleName = "Guide_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_app/Scene/sceneDetail/MobileListDetailInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC9EC5C6-0AA9-4DC6-B0F0-72EE95781972"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getMobile(sent:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70BBC7CC-670B-4857-AC3F-E155D5D27069"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneDetail/MobileListDetailWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getMobile(sent:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "70BBC7CC-670B-4857-AC3F-E155D5D27069 - f81229af828613d7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guide_app.MobileListDetailWorker.getMobile(sent: Swift.Int, _: (Swift.Result&lt;Swift.Array&lt;Guide_app.ImageMobile&gt;, Guide_app.ApiError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Guide_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_app/Scene/sceneDetail/MobileListDetailWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  uuid = "70BBC7CC-670B-4857-AC3F-E155D5D27069 - 4a4306b583a8e671"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Guide_app.ImageMobile&gt;, Guide_app.ApiError&gt;) -&gt; () in Guide_app.MobileListDetailWorker.getMobile(sent: Swift.Int, _: (Swift.Result&lt;Swift.Array&lt;Guide_app.ImageMobile&gt;, Guide_app.ApiError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Guide_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/z64me/Desktop/MobileList-ios/Guide_app/Scene/sceneDetail/MobileListDetailWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01016229-B3D8-4A15-A903-C91DDC59530B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "Guide_app_appTests"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7054889B-91D7-4CA4-8C3F-5651E614C2EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "Guide_app_appTests"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5349F06B-524B-4B24-9179-B53B15FF63B3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "setUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A1ACB91-D0AA-41EC-9405-F8D94E0421C0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "setUpMobileList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "257D0343-6605-4766-8288-C72B5A6D143B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "tearDown()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F0284A1-0250-4C5F-B6D0-9CAEC80A9989"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/Guide_app_appTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "setUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2B46D21-7D10-41AE-A1A2-B32A89D381D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB5B1755-0A52-4451-8AA6-51055966248D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListDetailInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getImageMobile(sent:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46D85921-B4AA-4627-869B-0A6388BC4B96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "testGetSegmentWithFailureSholdAskPresenterToPresentSortSegmentStatusAll()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A96546F5-7EBE-4576-A2E0-54526E5EFA2F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "getPhone(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F3D5FD3-2EF1-4590-9FD9-5A2D444B0554"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getPhone(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB36A61A-E18C-4BE5-9D68-A33DDD8B90FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListDetailInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "presentImagePhone(response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE1AE9D4-D47A-4783-9A83-DF38A5CFC6EE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListDetailInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "presentPhone(response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3237B67D-1AA7-4821-8923-5CF793E0E38D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E24D4EC-4AB5-4B57-98DA-C80CA27C91BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCA9C9F4-ED59-4234-A189-5BF060075CC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39C22A29-4992-4A41-9B6F-6BC68AEDE58F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "presentSort(response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEA03D37-1061-4C71-BE9C-70479513E715"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "testGetSortAskPresenterToPresentSortsortingStatusPriceHighToLow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC3D5025-D600-4A8C-9076-4C3182AE0485"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "presentSort(response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C1BFDB7-17AE-46C9-B6DF-10D8E83D9216"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9A31B2F-0A37-4728-9EC3-095EB92CF489"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "testGetSortAskPresenterToPresentSortsortingStatusPriceHighToLow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8E213EE-960F-4F9E-AD54-EB06FF915591"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_app/Scene/sceneList/MobileListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "arrayPhoneSuccess"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84F8FD6B-C740-45E5-BF3A-0139E116E2BE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guide_appTests/TestMobileListDetailInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "testGetImagePhoneFailureSholdAskPresenterToPresenterImagePhone()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

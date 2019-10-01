@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MobileListInteractorInterface {
-  func getFavorit(request: MobileList.AddFavoritMobile.Request)
+  func getPhone(request: MobileList.AddFavoritMobile.Request)
   func getSegment(request: MobileList.GetMobile.Request)
   func getSort(request: MobileList.SortMobileList.RequestMobile)
   var arrayPhone: Phones  {get set}
@@ -22,7 +22,7 @@ class MobileListInteractor: MobileListInteractorInterface {
   var segmentStatus: SegmentStatus?
   
   // MARK: - Business logic
-  func getFavorit(request: MobileList.AddFavoritMobile.Request) {
+  func getPhone(request: MobileList.AddFavoritMobile.Request) {
     let id: Int = request.indexCell
     let index = favoritId.filter( { (fav) -> Bool in
       if fav.value == true{
@@ -38,7 +38,7 @@ class MobileListInteractor: MobileListInteractorInterface {
     }
     
     let respones = MobileList.AddFavoritMobile.Response(checkFavorit: favoritId)
-    self.presenter.presentAddFavorit(response: respones)
+    self.presenter.presentAddFavorite(response: respones)
   }
   
   var arrayPhoneSuccess: Phones {
@@ -56,10 +56,12 @@ class MobileListInteractor: MobileListInteractorInterface {
               let respones = MobileList.GetMobile.Response(mobile: data)
               self?.presenter.presentPhone(response: respones)
               
-            case .failure(_):  break
+            case .failure(_):
+              // ?????????
+              break
             }
-          }else{
-            return
+          } else {
+            // ?????????
           }
         }
       }else {
@@ -84,17 +86,17 @@ class MobileListInteractor: MobileListInteractorInterface {
       switch sortType {
       case .priceHighToLow:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 00 > data1.price ?? 00
+          data0.price ?? 0.0 > data1.price ?? 0.0
         })
         
       case .priceLowToHigh:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.price ?? 00 < data1.price ?? 00
+          data0.price ?? 0.0 < data1.price ?? 0.0
         })
         
       case .rating:
         arrayPhoneForSort = arrayPhoneForSort.sorted(by: { (data0, data1) -> Bool in
-          data0.rating ?? 00 > data1.rating ?? 00
+          data0.rating ?? 0.0 > data1.rating ?? 0.0
         })
       }
     }
